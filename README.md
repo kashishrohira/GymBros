@@ -2,7 +2,7 @@
 
 ## Introduction
 FitHub is a fitness social network and tracking application 
-that seamlessly combines *fitness tracking* and *social networking*,
+that seamlessly combines **fitness tracking** and **social networking**,
 creating a vibrant community of fitness enthusiasts. The application aims 
 to provide users with a user-friendly and engaging experience to 
 log their workouts, set fitness goals, see their friends' progress 
@@ -29,4 +29,18 @@ fitness progress motivates and inspires me to continue pushing my own
 boundaries. Hence, developing a fitness social network and tracker allows me to
 combine my love for fitness with technology and community-building.
 
-
+## User Stories
+- As a user, I want to be able to add an exercise to my workout session
+- As a user, I want to be able to add a workout session by specifying exercises, duration and date
+- As a user, I want to be able to view my workout history with a list of exercises and other details
+- As a user, I want to be able to follow other users 
+- As a user, I want to be able to see the list of people I'm following
+- As a user, I want to be able to view workout updates from people I follow
+- As a user, I want to be able to set a fitness goal
+- As a user, I want to be able to view my list of fitness goals
+- As a user, I want to be able to join a fitness challenge
+- As a user, I want to be able to earn a fitness achievement badge for reaching a significant milestone
+- As a user, I want to be able to customize my profile with a bio
+- As a user, I want to be able to search for other users using their unique username
+- As a user, I want to be able to join a discussion in a community forum
+- As a user, I want to be able to read comments and post a comment in discussion forums
