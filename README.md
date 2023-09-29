@@ -1,7 +1,7 @@
-# FitHub
+# GymBros
 
 ## Introduction
-FitHub is a fitness social network and tracking application 
+GymBros is a fitness social network and tracking application 
 that seamlessly combines **fitness tracking** and **social networking**,
 creating a vibrant community of fitness enthusiasts. The application aims 
 to provide users with a user-friendly and engaging experience to 
@@ -18,7 +18,7 @@ workout updates and progress
 participate in challenges with other users to achieve goals together
 
 ## Target Audience
-FitHub is intended to cater to users of all fitness levels, 
+GymBros is intended to cater to users of all fitness levels, 
 from beginners seeking guidance to seasoned athletes and 
 passionate fitness enthusiasts sharing their expertise.
 
