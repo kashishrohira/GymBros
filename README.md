@@ -11,7 +11,7 @@ and connect with like-minded individuals.
 When a new user creates a profile, there are a number of 
 actions that can be done including:
 - Fitness tracking - users can log their workouts including,
-exercise type, duration, calories burned etc.
+exercise type, number of reps etc.
 - Follow other users - this enables them to see others' 
 workout updates and progress
 - Goals and challenges - users can set fitness goals and 
@@ -31,7 +31,7 @@ combine my love for fitness with technology and community-building.
 
 ## User Stories
 - As a user, I want to be able to add an exercise to my workout session
-- As a user, I want to be able to add a workout session by specifying exercises, duration and date
+- As a user, I want to be able to add a workout session to my list of workouts by specifying exercises, number of reps and date
 - As a user, I want to be able to view my workout history with a list of exercises and other details
 - As a user, I want to be able to follow other users 
 - As a user, I want to be able to see the list of people I'm following
@@ -43,4 +43,5 @@ combine my love for fitness with technology and community-building.
 - As a user, I want to be able to customize my profile with a bio
 - As a user, I want to be able to search for other users using their unique username
 - As a user, I want to be able to join a discussion in a community forum
-- As a user, I want to be able to read comments and post a comment in discussion forums
+- As a user, I want to be able to like and comment under posts
+- As a user, I want to be able to save my logged in state and access it when I close the forum and reopen it
