@@ -93,4 +93,17 @@ public class User {
         this.workoutLog.add(workout);
     }
 
+    // REQUIRES: !!!
+    // MODIFIES: this
+    // EFFECTS: sets user's password to given string
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the user's bio to given string
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
 }
