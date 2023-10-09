@@ -64,9 +64,11 @@ public class User {
     }
 
     // MODIFIES: this !!!!!!!!!!!!!!!!!!!!!!!!!! (ADD THIS USER TO THE GIVEN USER'S FOLLOWERS)
-    // EFFECTS: adds the given user to the following list of this user
+    // EFFECTS: adds the given user to this user's following list if not already there
     public void addToFollowing(User user) {
-        this.following.add(user);
+        if (!this.following.contains(user)) {
+            this.following.add(user);
+        }
     }
 
     // MODIFIES: this !!!!!!!!!!!!!!!!!!!!!!!!!!!!

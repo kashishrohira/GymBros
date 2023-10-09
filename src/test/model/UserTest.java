@@ -46,6 +46,16 @@ public class UserTest {
         assertEquals(testUser3, testUser1.getFollowing().get(1));
     }
 
+    @Test // adding a user that is already in the following list
+    public void testAddToFollowingAlreadyFollowingUser() {
+        testUser1.addToFollowing(testUser3);
+        testUser1.addToFollowing(testUser2);
+        testUser1.addToFollowing(testUser2);
+        assertEquals(2, testUser1.getFollowing().size());
+        assertEquals(testUser3, testUser1.getFollowing().get(0));
+        assertEquals(testUser2, testUser1.getFollowing().get(1));
+    }
+
     @Test // add single follower
     void testAddFollowerSingleUser() {
         testUser1.addFollower(testUser2);
