@@ -81,4 +81,5 @@ public class WorkoutTest {
     public void testGetDate() {
         assertEquals("October 07, 2023", testWorkout.getDate());
     }
+
 }
