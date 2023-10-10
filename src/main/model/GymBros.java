@@ -61,8 +61,7 @@ public class GymBros {
     // REQUIRES: username should exist in the app
     // EFFECTS: returns true if username exists and password matches, false otherwise
     public Boolean checkPasswordWhenLoggingIn(String username, String password) {
-       return (password.equals(usernamePassword.get(username)));
-
+        return (password.equals(usernamePassword.get(username)));
     }
 
     // EFFECTS: returns true if the username is at least one character and less than or
