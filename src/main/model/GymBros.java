@@ -55,24 +55,14 @@ public class GymBros {
     }
 
     public Boolean checkUsernameWhenLoggingIn(String username) {
-        if (!usernamePassword.containsKey(username)) {
-            return false;
-        } else {
-            return true;
-        }
+        return (usernamePassword.containsKey(username));
     }
 
+    // REQUIRES: username should exist in the app
     // EFFECTS: returns true if username exists and password matches, false otherwise
     public Boolean checkPasswordWhenLoggingIn(String username, String password) {
-        if (!usernamePassword.containsKey(username)) {
-            System.out.println("This username doesn't exist!");
-            return false;
-        } else if (!password.equals(usernamePassword.get(username))) {
-            System.out.println("Incorrect password!");
-            return false;
-        } else {
-            return true;
-        }
+       return (password.equals(usernamePassword.get(username)));
+
     }
 
     // EFFECTS: returns true if the username is at least one character and less than or
@@ -96,6 +86,8 @@ public class GymBros {
         return (usernameUser.containsKey(username));
     }
 
+    // REQUIRES: username exists in the app
+    // EFFECTS: returns the user with the given username
     public User getUserWithUsername(String username) {
         return usernameUser.get(username);
     }
