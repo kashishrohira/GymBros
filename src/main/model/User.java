@@ -163,8 +163,8 @@ public class User {
         return false;
     }
 
-    // REQUIRES: workout exists on the given date
-    // EFFECTS: returns workout on given date
+
+    // EFFECTS: returns workout on given date if it exists, null otherwise
     public Workout getWorkoutOnDate(String date) {
         for (Workout w: workoutLog) {
             if (w.getDate().equals(date)) {
