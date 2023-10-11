@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,8 @@ public class GymBros {
 
     private HashMap<String, User> usernameUser;
     private HashMap<String, String> usernamePassword;
+    private String date;
+    private List<Workout> workouts;
 
     public static final int MAX_USERNAME_LENGTH = 20;
     public static final int MIN_PASSWORD_LENGTH = 8;
@@ -25,6 +28,7 @@ public class GymBros {
         usernameUser = new HashMap<>();
         usernamePassword = new HashMap<>();
         currentlyLoggedInUser = null;
+        workouts = new ArrayList<Workout>(); //// TEST!!!!!
     }
 
     // EFFECTS: returns the log in state of the user
@@ -89,6 +93,49 @@ public class GymBros {
     // EFFECTS: returns the user with the given username
     public User getUserWithUsername(String username) {
         return usernameUser.get(username);
+    }
+
+
+    public void addWorkoutToLog(Workout w) {
+        workouts.add(w);
+    }
+
+    // EFFECTS: returns true if a workout exists on the given date
+    public boolean workoutOnDateExists(String date) {
+        if (workouts.isEmpty()) {
+            return false;
+        }
+        for (Workout w : this.workouts) {
+            if (w.getDate().equals(date)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // REQUIRES: workout exists on the given date
+    // EFFECTS: returns workout on given date
+    public Workout getWorkoutOnDate(String date) {
+        for (Workout w: workouts) {
+            if (w.getDate().equals(date)) {
+                return w;
+            }
+        }
+        return null;
+//        int i = 0;
+//        boolean exists = false;
+//        while (exists == false) {
+//            for (i = 0; i < workouts.size(); i++) {
+//                if (workouts.get(i).getDate() == date) {
+//                    exists = true;
+//                }
+//            }
+//        }
+//        return workouts.get(i);
+    }
+
+    public List<Workout> getWorkoutLog() {
+        return this.workouts;
     }
 }
 

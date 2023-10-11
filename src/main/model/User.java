@@ -87,6 +87,7 @@ public class User {
     // EFFECTS: removes the given user from this user's following list
     public void removeFollower(User user) {
         this.followers.remove(user);
+        user.removeFromFollowing(this);
     }
 
     // MODIFIES: this
@@ -107,5 +108,6 @@ public class User {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
 
 }

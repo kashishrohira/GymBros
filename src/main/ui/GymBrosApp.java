@@ -5,6 +5,8 @@ import model.GymBros;
 import model.User;
 import model.Workout;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -17,29 +19,25 @@ public class GymBrosApp {
     public static final String REGISTER_COMMAND = "/register";
 
     // fitness-tracking commands
+    public static final String VIEW_WORKOUT_COMMAND = "/viewworkout";
     public static final String VIEW_WORKOUT_LOG_COMMAND = "/viewlog";
     public static final String ADD_EXERCISE_COMMAND = "/exercise";
-    public static final String ADD_WORKOUT_COMMAND = "/workout";
+    public static final String TRACKER_COMMAND = "/track";
     public static final String HOME_COMMAND = "/home";
 
     // profile commands
     public static final String EDIT_PROFILE_COMMAND = "/edit";
-    public static final String EDIT_BIO_COMMAND = "/bio";
     public static final String FOLLOW_USER_COMMAND = "/follow";
     public static final String SELF_PROFILE_COMMAND = "me";
     public static final String VIEW_USER_POSTS = "/userposts";
 
     // other
     public static final String EXIT_COMMAND = "/exit";
-    public static final String HELP_COMMAND = "/help";
 
 
     public static final int MAX_USERNAME_LENGTH = 20;
     public static final int MIN_PASSWORD_LENGTH = 8;
 
-    public static final List<String> EXIT_FEED_COMMANDS =
-            Arrays.asList(LOGIN_COMMAND, LOGOUT_COMMAND,
-                    HOME_COMMAND, REGISTER_COMMAND, EXIT_COMMAND);
 
     private Boolean loggedIn;
     private User currentlyLoggedInUser;
@@ -64,17 +62,15 @@ public class GymBrosApp {
 
     // EFFECTS: processes user input
     private void runGymBros() {
+        boolean keepGoing1 = true;
         boolean keepGoing = true;
         String command = null;
 
 
-        // login
-        displayLoginMenu();
-        command = input.next();
-        command = command.toLowerCase();
-        if (command.equals(EXIT_COMMAND)) {
-            keepGoing = false;
-        } else {
+        while (loggedIn == false) {
+            displayLoginMenu();
+            command = input.next();
+            command = command.toLowerCase();
             processLoginCommand(command);
         }
 
@@ -161,7 +157,7 @@ public class GymBrosApp {
     public void displayNextMenu() {
         System.out.println("Choose from the options below");
         System.out.println("Select " + EDIT_PROFILE_COMMAND + " to edit your profile");
-        System.out.println("Select  " + ADD_WORKOUT_COMMAND + " to log a new workout");
+        System.out.println("Select  " + TRACKER_COMMAND + " to go into your workout history");
         System.out.println("Select " + FOLLOW_USER_COMMAND + " to follow another user");
     }
 
@@ -169,7 +165,7 @@ public class GymBrosApp {
     public void processNextCommand(String command) {
         if (command.equals(EDIT_PROFILE_COMMAND)) {
             editProfile();
-        } else if (command.equals(ADD_WORKOUT_COMMAND)) {
+        } else if (command.equals(TRACKER_COMMAND)) {
             addWorkout();
         } else if (command.equals(FOLLOW_USER_COMMAND)) {
             followUser();
@@ -197,10 +193,16 @@ public class GymBrosApp {
         if (command.equals(ADD_EXERCISE_COMMAND)) {
             addExercise();
         } else if (command.equals(VIEW_WORKOUT_LOG_COMMAND)) {
-            if (currentlyLoggedInUser.getWorkoutLog().isEmpty()) {
+            if (gymBros.getWorkoutLog().isEmpty()) {
                 System.out.println("Your workout log is empty");
             } else {
-                currentlyLoggedInUser.getWorkoutLog();
+                List<Workout> workoutLog = gymBros.getWorkoutLog();
+                for (Workout w: workoutLog) {
+                    System.out.println(w.getDate());
+                    for (Exercise e: w.getWorkoutExercises()) {
+                        System.out.println(e.getExerciseName() + " " + e.getReps());
+                    }
+                }
 
             }
         } else if (command.equals(HOME_COMMAND)) {
@@ -225,12 +227,29 @@ public class GymBrosApp {
         reps = input.nextInt();
 
         Exercise exercise = new Exercise(name, reps);
-        Workout workout = new Workout();
-        workout.addExercise(exercise);
-        currentlyLoggedInUser.addWorkout(workout);
+//        Workout workout = new Workout();
+//        workout.addExercise(exercise);
+//        currentlyLoggedInUser.addWorkout(workout);
+        String date;
+        DateTimeFormatter dtf;
+        dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");  // ?????
+        LocalDateTime localDate = LocalDateTime.now(); // ???
+        date = dtf.format(localDate); // ?????
+        if (gymBros.workoutOnDateExists(date)) {
+            Workout w = gymBros.getWorkoutOnDate(date);
+            w.addExercise(exercise);
+            //gymBros.addWorkoutToLog(w);
+
+        } else {
+            Workout workout = new Workout();
+            workout.addExercise(exercise);
+            gymBros.addWorkoutToLog(workout);
+        }
         System.out.println("Exercise has been added to new workout");
     }
 
+
+    // EFFECTS: if user exists, then follow the user
     public void followUser() {
         String follow = null;
         System.out.println("Enter the username of the user you want to follow");
@@ -244,4 +263,6 @@ public class GymBrosApp {
             followUser();
         }
     }
+
+
 }

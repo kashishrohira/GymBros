@@ -30,6 +30,8 @@ boundaries. Hence, developing a fitness social network and tracker allows me to
 combine my love for fitness with technology and community-building.
 
 ## User Stories
+- As a user, I want tp be able to create a new account on the app
+- As a user, I want to be able to log in to my account using my username and password
 - As a user, I want to be able to create a workout session and record the local date when it was created
 - As a user, I want to be able to add an exercise to my workout session
 - As a user, I want to be able to add a workout session to my workout log
@@ -38,11 +40,8 @@ combine my love for fitness with technology and community-building.
 - As a user, I want to be able to follow other users 
 - As a user, I want to be able to see the list of people I'm following
 - As a user, I want to be able to view workout updates from people I follow
-- As a user, I want to be able to set a fitness goal
-- As a user, I want to be able to view my list of fitness goals
 - As a user, I want to be able to join a fitness challenge
 - As a user, I want to be able to earn a fitness achievement badge for reaching a significant milestone
 - As a user, I want to be able to search for other users using their unique username
-- As a user, I want to be able to join a discussion in a community forum
 - As a user, I want to be able to like and comment under posts
 - As a user, I want to be able to save my logged in state and access it when I close the forum and reopen it

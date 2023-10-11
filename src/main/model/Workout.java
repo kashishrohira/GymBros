@@ -47,4 +47,7 @@ public class Workout {
         return this.date;
     }
 
+    public List<Exercise> getWorkoutExercises() {
+        return this.workout;
+    }
 }

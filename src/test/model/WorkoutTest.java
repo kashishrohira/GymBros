@@ -2,6 +2,8 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -82,4 +84,14 @@ public class WorkoutTest {
         assertEquals("October 07, 2023", testWorkout.getDate());
     }
 
+    @Test
+    public void testGetWorkoutExercises() {
+        testWorkout.addExercise(testExercise1);
+        testWorkout.addExercise(testExercise2);
+
+        List<Exercise> expected = new ArrayList<Exercise>();
+        expected.add(testExercise1);
+        expected.add(testExercise2);
+        assertEquals(expected, testWorkout.getWorkoutExercises());
+    }
 }
