@@ -63,31 +63,44 @@ public class User {
         return this.workoutLog;
     }
 
-    // MODIFIES: this !!!!!!!!!!!!!!!!!!!!!!!!!! (ADD THIS USER TO THE GIVEN USER'S FOLLOWERS)
+    // MODIFIES: this, user
     // EFFECTS: adds the given user to this user's following list if not already there
+    //          and adds this user to the given user's followers
     public void addToFollowing(User user) {
         if (!this.following.contains(user)) {
             this.following.add(user);
+            user.addFollower(this);
         }
     }
 
-    // MODIFIES: this !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // EFFECTS: adds the given user to this user's followers
+    // MODIFIES: this, user
+    // EFFECTS: adds the given user to this user's followers if not already there
+    //          and adds this user to the given user's following list
     public void addFollower(User user) {
-        this.followers.add(user);
+        if (!this.followers.contains(user)) {
+            this.followers.add(user);
+            user.addToFollowing(this);
+        }
     }
 
-    // MODIFIES, this, user????????????????
-    // EFFECTS: removes the given user from this user's following list
+    // MODIFIES, this, user
+    // EFFECTS: if this user's following contains given user, then removes given user from following
+    //          and removes this from given user's followers
     public void removeFromFollowing(User user) {
-        this.following.remove(user);
+        if (this.following.contains(user)) {
+            this.following.remove(user);
+            user.removeFollower(this);
+        }
     }
 
-    // MODIFIES, this, user????????????????
-    // EFFECTS: removes the given user from this user's following list
+    // MODIFIES, this, user
+    // EFFECTS: if this user's followers contains given user, then removes given user from followers
+    //          and removes this user from given user's following list
     public void removeFollower(User user) {
-        this.followers.remove(user);
-        user.removeFromFollowing(this);
+        if (this.followers.contains(user)) {
+            this.followers.remove(user);
+            user.removeFromFollowing(this);
+        }
     }
 
     // MODIFIES: this
@@ -96,23 +109,27 @@ public class User {
         this.workoutLog.add(workout);
     }
 
-    // REQUIRES: !!!
+    // REQUIRES: length is at least minimum password length
     // MODIFIES: this
     // EFFECTS: sets user's password to given string
     public void setPassword(String password) {
         this.password = password;
     }
 
+    // REQUIRES: bio is at least 1 character
     // MODIFIES: this
     // EFFECTS: sets the user's bio to given string
     public void setBio(String bio) {
         this.bio = bio;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds given workout to the workout log of this user
     public void addWorkoutToLog(Workout w) {
         workoutLog.add(w);
     }
 
+    // REQUIRES: date should be in format MMMM dd, YYYY eg, October 10, 2023
     // EFFECTS: returns true if a workout exists on the given date
     public boolean workoutOnDateExists(String date) {
         if (workoutLog.isEmpty()) {

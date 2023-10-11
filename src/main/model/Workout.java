@@ -12,7 +12,7 @@ public class Workout {
     private DateTimeFormatter dtf;
 
     // EFFECTS: constructs a new Workout with an empty list of Exercises
-    //          and local date of when the workout was created
+    //          and stores local date of when the workout was created
     public Workout() {
         this.workout = new ArrayList<Exercise>();
         this.dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");  // ?????
@@ -37,6 +37,7 @@ public class Workout {
         return workout.size();
     }
 
+    // REQUIRES: i < workout.size()
     // EFFECTS: returns the Exercise at index i in workout
     public Exercise get(int i) {
         return workout.get(i);
@@ -47,6 +48,7 @@ public class Workout {
         return this.date;
     }
 
+    // EFFECTS: returns the list of exercises in this workout
     public List<Exercise> getWorkoutExercises() {
         return this.workout;
     }

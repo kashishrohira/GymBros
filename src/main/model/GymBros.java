@@ -16,7 +16,6 @@ public class GymBros {
     private HashMap<String, User> usernameUser;
     private HashMap<String, String> usernamePassword;
     private String date;
-    private List<Workout> workouts;
 
     public static final int MAX_USERNAME_LENGTH = 20;
     public static final int MIN_PASSWORD_LENGTH = 8;
@@ -28,7 +27,6 @@ public class GymBros {
         usernameUser = new HashMap<>();
         usernamePassword = new HashMap<>();
         currentlyLoggedInUser = null;
-        workouts = new ArrayList<Workout>(); //// TEST!!!!!
     }
 
     // EFFECTS: returns the log in state of the user
@@ -36,21 +34,22 @@ public class GymBros {
         return this.loggedIn;
     }
 
-    // EFFECTS: returns the hashmap containing username and user objects
+    // EFFECTS: returns the hashmap containing usernames and user objects
     public HashMap<String, User> getUsernameUser() {
         return this.usernameUser;
     }
 
-    // EFFECTS: returns the hashmap containing username and passwords
+    // EFFECTS: returns the hashmap containing usernames and passwords
     public HashMap<String, String> getUsernamePassword() {
         return this.usernamePassword;
     }
 
-    // EFFECTS: returns the currently logged in user
+    // EFFECTS: returns the currently logged-in user
     public User getCurrentlyLoggedInUser() {
         return this.currentlyLoggedInUser;
     }
 
+    // MODIFIES: this
     // EFFECTS: Creates a new user and adds the user to the list of all users on the app
     public void createNewUser(String username, String password) {
         currentlyLoggedInUser = new User(username, password);
@@ -58,12 +57,13 @@ public class GymBros {
         usernamePassword.put(username, password);
     }
 
+    // EFFECTS: returns true if username exists on the app, false otherwise
     public Boolean checkUsernameWhenLoggingIn(String username) {
         return (usernamePassword.containsKey(username));
     }
 
     // REQUIRES: username should exist in the app
-    // EFFECTS: returns true if username exists and password matches, false otherwise
+    // EFFECTS: returns true if password matches the username, false otherwise
     public Boolean checkPasswordWhenLoggingIn(String username, String password) {
         return (password.equals(usernamePassword.get(username)));
     }

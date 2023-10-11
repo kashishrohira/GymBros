@@ -227,9 +227,6 @@ public class GymBrosApp {
         reps = input.nextInt();
 
         Exercise exercise = new Exercise(name, reps);
-//        Workout workout = new Workout();
-//        workout.addExercise(exercise);
-//        currentlyLoggedInUser.addWorkout(workout);
         String date;
         DateTimeFormatter dtf;
         dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");  // ?????
