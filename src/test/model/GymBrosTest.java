@@ -143,38 +143,5 @@ public class GymBrosTest {
 
     }
 
-    @Test
-    void testAddWorkoutToLogSingleWorkout() {
-        testGymBros.addWorkoutToLog(testWorkout1);
-        assertEquals(1, testGymBros.getWorkoutLog().size());
-        assertEquals(testWorkout1, testGymBros.getWorkoutLog().get(0));
-    }
 
-    @Test
-    void testAddWorkoutToLogMultipleWorkouts() {
-        testGymBros.addWorkoutToLog(testWorkout1);
-        testGymBros.addWorkoutToLog(testWorkout2);
-        assertEquals(2, testGymBros.getWorkoutLog().size());
-        assertEquals(testWorkout1, testGymBros.getWorkoutLog().get(0));
-        assertEquals(testWorkout2, testGymBros.getWorkoutLog().get(1));
-    }
-
-    @Test
-    void testWorkoutOnDateExistsFalse() {
-        testGymBros.addWorkoutToLog(testWorkout1);
-        assertFalse(testGymBros.workoutOnDateExists("October 11, 2023"));
-    }
-
-    @Test
-    void testWorkoutOnDateExistsTrue() {
-        testGymBros.addWorkoutToLog(testWorkout1);
-        assertTrue(testGymBros.workoutOnDateExists("October 10, 2023"));
-    }
-
-    @Test
-    void testGetWorkoutOnDate() {
-        testGymBros.addWorkoutToLog(testWorkout1);
-        assertEquals(testWorkout1, testGymBros.getWorkoutOnDate("October 10, 2023"));
-
-    }
 }

@@ -193,10 +193,10 @@ public class GymBrosApp {
         if (command.equals(ADD_EXERCISE_COMMAND)) {
             addExercise();
         } else if (command.equals(VIEW_WORKOUT_LOG_COMMAND)) {
-            if (gymBros.getWorkoutLog().isEmpty()) {
+            if (currentlyLoggedInUser.getWorkoutLog().isEmpty()) {
                 System.out.println("Your workout log is empty");
             } else {
-                List<Workout> workoutLog = gymBros.getWorkoutLog();
+                List<Workout> workoutLog = currentlyLoggedInUser.getWorkoutLog();
                 for (Workout w: workoutLog) {
                     System.out.println(w.getDate());
                     for (Exercise e: w.getWorkoutExercises()) {
@@ -235,15 +235,15 @@ public class GymBrosApp {
         dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");  // ?????
         LocalDateTime localDate = LocalDateTime.now(); // ???
         date = dtf.format(localDate); // ?????
-        if (gymBros.workoutOnDateExists(date)) {
-            Workout w = gymBros.getWorkoutOnDate(date);
+        if (currentlyLoggedInUser.workoutOnDateExists(date)) {
+            Workout w = currentlyLoggedInUser.getWorkoutOnDate(date);
             w.addExercise(exercise);
             //gymBros.addWorkoutToLog(w);
 
         } else {
             Workout workout = new Workout();
             workout.addExercise(exercise);
-            gymBros.addWorkoutToLog(workout);
+            currentlyLoggedInUser.addWorkoutToLog(workout);
         }
         System.out.println("Exercise has been added to new workout");
     }

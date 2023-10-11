@@ -3,8 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
     public User testUser1;
@@ -142,5 +141,50 @@ public class UserTest {
         assertEquals("yas queen", testUser2.getBio());
         testUser2.setBio("slayyy");
         assertEquals("slayyy", testUser2.getBio());
+    }
+
+    @Test
+    void testAddWorkoutToLogSingleWorkout() {
+        testUser1.addWorkoutToLog(testWorkout1);
+        assertEquals(1, testUser1.getWorkoutLog().size());
+        assertEquals(testWorkout1, testUser1.getWorkoutLog().get(0));
+    }
+
+    @Test
+    void testAddWorkoutToLogMultipleWorkouts() {
+        testUser1.addWorkoutToLog(testWorkout1);
+        testUser1.addWorkoutToLog(testWorkout2);
+        assertEquals(2, testUser1.getWorkoutLog().size());
+        assertEquals(testWorkout1, testUser1.getWorkoutLog().get(0));
+        assertEquals(testWorkout2, testUser1.getWorkoutLog().get(1));
+    }
+
+    @Test
+    void testWorkoutOnDateExistsFalse() {
+        testUser1.addWorkoutToLog(testWorkout1);
+        assertFalse(testUser1.workoutOnDateExists("October 11, 2023"));
+    }
+
+    @Test
+    void testWorkoutOnDateExistsTrue() {
+        testUser1.addWorkoutToLog(testWorkout1);
+        assertTrue(testUser1.workoutOnDateExists("October 10, 2023"));
+    }
+
+    @Test
+    void testWorkoutOnDateExistsEmptyWorkout() {
+        assertFalse(testUser1.workoutOnDateExists("October 10, 2023"));
+    }
+
+    @Test
+    void testGetWorkoutOnDate() {
+        testUser1.addWorkoutToLog(testWorkout1);
+        assertEquals(testWorkout1, testUser1.getWorkoutOnDate("October 10, 2023"));
+    }
+
+    @Test
+    void testGetWorkoutOnDateNull() {
+        testUser1.addWorkoutToLog(testWorkout1);
+        assertEquals(null, testUser1.getWorkoutOnDate("October 11, 2023"));
     }
 }

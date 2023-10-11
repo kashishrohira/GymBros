@@ -109,5 +109,31 @@ public class User {
         this.bio = bio;
     }
 
+    public void addWorkoutToLog(Workout w) {
+        workoutLog.add(w);
+    }
 
+    // EFFECTS: returns true if a workout exists on the given date
+    public boolean workoutOnDateExists(String date) {
+        if (workoutLog.isEmpty()) {
+            return false;
+        }
+        for (Workout w : this.workoutLog) {
+            if (w.getDate().equals(date)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // REQUIRES: workout exists on the given date
+    // EFFECTS: returns workout on given date
+    public Workout getWorkoutOnDate(String date) {
+        for (Workout w: workoutLog) {
+            if (w.getDate().equals(date)) {
+                return w;
+            }
+        }
+        return null;
+    }
 }

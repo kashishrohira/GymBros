@@ -96,36 +96,6 @@ public class GymBros {
     }
 
 
-    public void addWorkoutToLog(Workout w) {
-        workouts.add(w);
-    }
 
-    // EFFECTS: returns true if a workout exists on the given date
-    public boolean workoutOnDateExists(String date) {
-        if (workouts.isEmpty()) {
-            return false;
-        }
-        for (Workout w : this.workouts) {
-            if (w.getDate().equals(date)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // REQUIRES: workout exists on the given date
-    // EFFECTS: returns workout on given date
-    public Workout getWorkoutOnDate(String date) {
-        for (Workout w: workouts) {
-            if (w.getDate().equals(date)) {
-                return w;
-            }
-        }
-        return null;
-    }
-
-    public List<Workout> getWorkoutLog() {
-        return this.workouts;
-    }
 }
 
