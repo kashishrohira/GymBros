@@ -236,13 +236,12 @@ public class GymBrosApp {
         Exercise exercise = new Exercise(name, reps);
         String date;
         DateTimeFormatter dtf;
-        dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");  // ?????
-        LocalDateTime localDate = LocalDateTime.now(); // ???
-        date = dtf.format(localDate); // ?????
+        dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
+        LocalDateTime localDate = LocalDateTime.now();
+        date = dtf.format(localDate);
         if (currentlyLoggedInUser.workoutOnDateExists(date)) {
             Workout w = currentlyLoggedInUser.getWorkoutOnDate(date);
             w.addExercise(exercise);
-            //gymBros.addWorkoutToLog(w);
 
         } else {
             Workout workout = new Workout();
