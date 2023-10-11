@@ -122,16 +122,6 @@ public class GymBros {
             }
         }
         return null;
-//        int i = 0;
-//        boolean exists = false;
-//        while (exists == false) {
-//            for (i = 0; i < workouts.size(); i++) {
-//                if (workouts.get(i).getDate() == date) {
-//                    exists = true;
-//                }
-//            }
-//        }
-//        return workouts.get(i);
     }
 
     public List<Workout> getWorkoutLog() {

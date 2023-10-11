@@ -3,17 +3,21 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.WildcardType;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GymBrosTest {
     public GymBros testGymBros;
-    public User testUser1;
+    public Workout testWorkout1;
+    public Workout testWorkout2;
 
     @BeforeEach
     void runBefore() {
         testGymBros = new GymBros();
+        testWorkout1 = new Workout();
+        testWorkout2 = new Workout();
     }
 
     @Test
@@ -136,6 +140,41 @@ public class GymBrosTest {
 
         assertEquals("kash", testGymBros.getUserWithUsername("kash").getUsername());
         assertEquals("nononono", testGymBros.getUserWithUsername("kash").getPassword());
+
+    }
+
+    @Test
+    void testAddWorkoutToLogSingleWorkout() {
+        testGymBros.addWorkoutToLog(testWorkout1);
+        assertEquals(1, testGymBros.getWorkoutLog().size());
+        assertEquals(testWorkout1, testGymBros.getWorkoutLog().get(0));
+    }
+
+    @Test
+    void testAddWorkoutToLogMultipleWorkouts() {
+        testGymBros.addWorkoutToLog(testWorkout1);
+        testGymBros.addWorkoutToLog(testWorkout2);
+        assertEquals(2, testGymBros.getWorkoutLog().size());
+        assertEquals(testWorkout1, testGymBros.getWorkoutLog().get(0));
+        assertEquals(testWorkout2, testGymBros.getWorkoutLog().get(1));
+    }
+
+    @Test
+    void testWorkoutOnDateExistsFalse() {
+        testGymBros.addWorkoutToLog(testWorkout1);
+        assertFalse(testGymBros.workoutOnDateExists("October 11, 2023"));
+    }
+
+    @Test
+    void testWorkoutOnDateExistsTrue() {
+        testGymBros.addWorkoutToLog(testWorkout1);
+        assertTrue(testGymBros.workoutOnDateExists("October 10, 2023"));
+    }
+
+    @Test
+    void testGetWorkoutOnDate() {
+        testGymBros.addWorkoutToLog(testWorkout1);
+        assertEquals(testWorkout1, testGymBros.getWorkoutOnDate("October 10, 2023"));
 
     }
 }
