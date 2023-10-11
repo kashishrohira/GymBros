@@ -3,6 +3,9 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
@@ -107,6 +110,28 @@ public class UserTest {
         testUser1.removeFollower(testUser3);
         assertEquals(0, testUser1.getFollowers().size());
         assertTrue(testUser1.getFollowers().isEmpty());
+    }
+
+    @Test
+    void testGetFollowingUsernames() {
+        assertTrue(testUser1.getFollowingUsernames().isEmpty());
+        testUser1.addToFollowing(testUser2);
+        testUser1.addToFollowing(testUser3);
+        List<String> expected = new ArrayList<>();
+        expected.add("user2");
+        expected.add("user3");
+        assertEquals(expected, testUser1.getFollowingUsernames());
+    }
+
+    @Test
+    void testGetFollowersUsernames() {
+        assertTrue(testUser1.getFollowersUsernames().isEmpty());
+        testUser1.addFollower(testUser2);
+        testUser1.addFollower(testUser3);
+        List<String> expected = new ArrayList<>();
+        expected.add("user2");
+        expected.add("user3");
+        assertEquals(expected, testUser1.getFollowersUsernames());
     }
 
     @Test // adding single workout to workout log

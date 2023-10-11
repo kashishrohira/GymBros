@@ -14,7 +14,6 @@ import java.util.Scanner;
 
 public class GymBrosApp {
     // register/login commands
-    public static final String LOGOUT_COMMAND = "/logout";
     public static final String LOGIN_COMMAND = "/login";
     public static final String REGISTER_COMMAND = "/register";
 
@@ -105,6 +104,7 @@ public class GymBrosApp {
         System.out.println("Select " + LOGIN_COMMAND + " to log into an existing account");
     }
 
+    // MODIFIES: this
     // EFFECTS: registers a new account with valid username and password input from the user
     public void registerAccount() {
 
@@ -132,6 +132,7 @@ public class GymBrosApp {
     }
 
 
+    // MODIFIES: this
     // EFFECTS: logs the user into their account if username exists and password matches
     public void logIntoAccount() {
         System.out.println("Please enter your username");
@@ -159,6 +160,7 @@ public class GymBrosApp {
         System.out.println("Select " + EDIT_PROFILE_COMMAND + " to edit your profile");
         System.out.println("Select  " + TRACKER_COMMAND + " to go into your workout history");
         System.out.println("Select " + FOLLOW_USER_COMMAND + " to follow another user");
+        System.out.println("Select " + SELF_PROFILE_COMMAND + " to view your profile");
     }
 
     // EFFECTS: processes user command
@@ -169,11 +171,15 @@ public class GymBrosApp {
             addWorkout();
         } else if (command.equals(FOLLOW_USER_COMMAND)) {
             followUser();
+        } else if (command.equals(SELF_PROFILE_COMMAND)) {
+            viewProfile();
         } else {
             System.out.println("Selection not valid!");
         }
     }
 
+
+    // MODIFIES: this
     // EFFECTS: lets the user edit their profile
     public void editProfile() {
         String bio = null;
@@ -184,6 +190,7 @@ public class GymBrosApp {
         System.out.println("Success! Your bio has been updated!");
     }
 
+    // EFFECTS: processes commands related to workout log
     public void addWorkout() {
         String command = null;
         displayWorkoutMenu();
@@ -195,6 +202,8 @@ public class GymBrosApp {
         } else if (command.equals(VIEW_WORKOUT_LOG_COMMAND)) {
             if (currentlyLoggedInUser.getWorkoutLog().isEmpty()) {
                 System.out.println("Your workout log is empty");
+            }  else if (command.equals(HOME_COMMAND)) {
+                processNextCommand(command);
             } else {
                 List<Workout> workoutLog = currentlyLoggedInUser.getWorkoutLog();
                 for (Workout w: workoutLog) {
@@ -203,10 +212,7 @@ public class GymBrosApp {
                         System.out.println(e.getExerciseName() + " " + e.getReps());
                     }
                 }
-
             }
-        } else if (command.equals(HOME_COMMAND)) {
-            processNextCommand(command);
         }
     }
 
@@ -217,6 +223,7 @@ public class GymBrosApp {
         System.out.println("Select " + HOME_COMMAND + " to go back to home!");
     }
 
+    // MODIFIES: this
     // EFFECTS: adds a new exercise to the user's workout and adds the workout to the user's workout log
     public void addExercise() {
         String name = null;
@@ -246,6 +253,7 @@ public class GymBrosApp {
     }
 
 
+    // MODIFIES: this
     // EFFECTS: if user exists, then follow the user
     public void followUser() {
         String follow = null;
@@ -259,6 +267,15 @@ public class GymBrosApp {
             System.out.println("User does not exist! Please enter a valid username");
             followUser();
         }
+    }
+
+    // EFFECTS: displays profile of the user
+    public void viewProfile() {
+        String command = null;
+        System.out.println("Your username is " + currentlyLoggedInUser.getUsername());
+        System.out.println("Your bio is " + currentlyLoggedInUser.getBio());
+        System.out.println("You are following " + currentlyLoggedInUser.getFollowingUsernames());
+        System.out.println("Your followers are " + currentlyLoggedInUser.getFollowersUsernames());
     }
 
 

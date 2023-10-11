@@ -7,7 +7,7 @@ import java.util.List;
 
 public class User {
     // Constants
-    public static final String defaultBio = " ";
+    public static final String defaultBio = "default bio";
 
     // Fields
     private final String userName;
@@ -101,6 +101,26 @@ public class User {
             this.followers.remove(user);
             user.removeFromFollowing(this);
         }
+    }
+
+    // EFFECTS: returns the list of usernames of users that this user follows
+    public List<String> getFollowingUsernames() {
+        List<String> followingList = new ArrayList<>();
+        for (User u: this.following) {
+            String username = u.getUsername();
+            followingList.add(username);
+        }
+        return followingList;
+    }
+
+    // EFFECTS: returns the list of followers of this user
+    public List<String> getFollowersUsernames() {
+        List<String> followerList = new ArrayList<>();
+        for (User u: this.followers) {
+            String username = u.getUsername();
+            followerList.add(username);
+        }
+        return followerList;
     }
 
     // MODIFIES: this
