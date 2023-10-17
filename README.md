@@ -44,4 +44,6 @@ combine my love for fitness with technology and community-building.
 - As a user, I want to be able to earn a fitness achievement badge for reaching a significant milestone
 - As a user, I want to be able to search for other users using their unique username
 - As a user, I want to be able to like and comment under posts
-- As a user, I want to be able to save my logged in state and access it when I close the forum and reopen it
+- As a user, when I select the exit option from the application menu, I want to be reminded to save my workout log to 
+ file and have the option to do so or not
+- As a user, I want to be given the option to load my workout log from file
