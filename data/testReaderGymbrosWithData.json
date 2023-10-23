@@ -1,0 +1,16 @@
+{
+  "loggedIn": true,
+    "user": {
+      "username": "user1",
+      "password": "abababab",
+      "bio": "cool",
+      "workouts": [
+        {
+          "date": "October 22, 2023",
+          "exercises": [squats 10]
+        }
+      ],
+      "following": [],
+      "followers": []
+    }
+}

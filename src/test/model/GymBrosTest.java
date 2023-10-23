@@ -140,8 +140,13 @@ public class GymBrosTest {
 
         assertEquals("kash", testGymBros.getUserWithUsername("kash").getUsername());
         assertEquals("nononono", testGymBros.getUserWithUsername("kash").getPassword());
-
     }
 
+    @Test
+    void testLogOut() {
+        testGymBros.logOut();
+        assertFalse(testGymBros.getLoggedIn());
+        assertNull(testGymBros.getCurrentlyLoggedInUser());
+    }
 
 }

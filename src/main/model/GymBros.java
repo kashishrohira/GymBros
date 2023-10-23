@@ -1,11 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class GymBros {
+public class GymBros implements Writable {
 
     // fields
     private Boolean loggedIn;
@@ -95,6 +99,67 @@ public class GymBros {
         return usernameUser.get(username);
     }
 
+    // NEW STARTS HERE !!!!!
+
+    // MODIFIES: this
+    // EFFECTS: logs the user out of the app
+    public void logOut() {
+        loggedIn = false;
+        currentlyLoggedInUser = null;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject gymBros = new JSONObject();
+        gymBros.put("loggedIn",this.loggedIn);
+        if (currentlyLoggedInUser != null) {
+            gymBros.put("user", currentlyLoggedInUser.toJson());
+        } else {
+            gymBros.put("user","null");
+        }
+
+        gymBros.put("users", usersToJson());
+        return gymBros;
+    }
+
+    // EFFECTS: returns the users on the app as a JSONArray
+    private JSONArray usersToJson() {
+        JSONArray users = new JSONArray();
+
+        for (User u: usernameUser.values()) {
+            users.put(u.toJson());
+        }
+
+        return users;
+    }
+
+
+    // REQUIRES: given user is registered on the app
+    // MODIFIES: this
+    // EFFECTS: sets the current user to the given user
+    public void setCurrentlyLoggedInUser(User currentlyLoggedInUser) {
+        this.currentlyLoggedInUser = currentlyLoggedInUser;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the loggedIn status of the user to the given boolean
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
+
+    // REQUIRES: map contains registered users on the app
+    // MODIFIES: this
+    // EFFECTS: sets the map of usernames and users and users to the given map
+    public void setUsernameUsers(HashMap<String, User> usernameUsers) {
+        this.usernameUser = usernameUsers;
+    }
+
+    // REQUIRES: map contains registered users on the app
+    // MODIFIES: this
+    // EFFECTS: sets the map of usernames and passwords and users to the given map
+    public void setUsernamePasswords(HashMap<String, String> usernamePasswords) {
+        this.usernamePassword = usernamePasswords;
+    }
 
 
 }

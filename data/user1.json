@@ -1,0 +1,12 @@
+{
+    "loggedIn": true,
+    "user": {
+        "username": "user1",
+        "password": "abababab",
+        "followers": [],
+        "workoutLog": [],
+        "following": [],
+        "bio": "cool"
+    },
+    "users": []
+}

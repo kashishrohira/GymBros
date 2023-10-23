@@ -4,10 +4,13 @@ import model.Exercise;
 import model.GymBros;
 import model.User;
 import model.Workout;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -16,9 +19,10 @@ public class GymBrosApp {
     // register/login commands
     public static final String LOGIN_COMMAND = "/login";
     public static final String REGISTER_COMMAND = "/register";
+    public static final String LOGOUT_COMMAND = "/logout";
+    public static final String SAVE_ACCOUNT = "/save";
 
     // fitness-tracking commands
-    public static final String VIEW_WORKOUT_COMMAND = "/viewworkout";
     public static final String VIEW_WORKOUT_LOG_COMMAND = "/viewlog";
     public static final String ADD_EXERCISE_COMMAND = "/exercise";
     public static final String TRACKER_COMMAND = "/track";
@@ -45,6 +49,9 @@ public class GymBrosApp {
     private HashMap<String, String> usernamePassword;
     private String userInput;
     private GymBros gymBros;
+    private JsonWriter writer;
+    private JsonReader reader;
+    private String jsonUser = "./data/user1.json";
 
     // EFFECTS: creates a new instance of the GymBros application, with loggedIn being false,
     //          the usernameUser as empty hashmap, instantiates the Scanner to take in user input
@@ -150,9 +157,34 @@ public class GymBrosApp {
             loggedIn = true;
             currentlyLoggedInUser = gymBros.getUserWithUsername(username);
             System.out.println("Successfully logged in!");
+            loadAccount();
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads account from file
+    private void loadAccount() {
+        writer = new JsonWriter(jsonUser);
+        reader = new JsonReader(jsonUser);
+        try {
+            gymBros = reader.read();
+            System.out.println("Loaded " + currentlyLoggedInUser.getUsername() + " from " + jsonUser);
+        } catch (IOException io) {
+            System.out.println("Unable to read from file: " + jsonUser);
+        }
+    }
+
+    // EFFECTS: saves the account to file
+    private void saveAccount() {
+        try {
+            writer.open();
+            writer.writeGymBros(gymBros);
+            writer.close();
+            System.out.println("Saved " + currentlyLoggedInUser.getUsername() + " to " + jsonUser);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + jsonUser);
+        }
+    }
 
     // EFFECTS: displays action options for user after logging in
     public void displayNextMenu() {
@@ -161,6 +193,8 @@ public class GymBrosApp {
         System.out.println("Select  " + TRACKER_COMMAND + " to go into your workout history");
         System.out.println("Select " + FOLLOW_USER_COMMAND + " to follow another user");
         System.out.println("Select " + SELF_PROFILE_COMMAND + " to view your profile");
+        System.out.println("Select " + SAVE_ACCOUNT + " to log out of your account");
+        System.out.println("Select " + LOGOUT_COMMAND + " to log out of your account");
     }
 
     // EFFECTS: processes user command
@@ -173,6 +207,15 @@ public class GymBrosApp {
             followUser();
         } else if (command.equals(SELF_PROFILE_COMMAND)) {
             viewProfile();
+        } else if (command.equals(SAVE_ACCOUNT)) {
+            saveAccount();
+        } else if (command.equals(LOGOUT_COMMAND)) {
+            gymBros.logOut();
+            System.out.println("You have been successfully logged out!");
+            displayLoginMenu();
+            command = input.next();
+            command = command.toLowerCase();
+            processLoginCommand(command);
         } else {
             System.out.println("Selection not valid!");
         }

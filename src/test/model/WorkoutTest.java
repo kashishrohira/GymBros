@@ -2,6 +2,9 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +84,12 @@ public class WorkoutTest {
 
     @Test
     public void testGetDate() {
-        assertEquals("October 07, 2023", testWorkout.getDate());
+        String date;
+        DateTimeFormatter dtf;
+        dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
+        LocalDateTime localDate = LocalDateTime.now();
+        date = dtf.format(localDate);
+        assertEquals(date, testWorkout.getDate());
     }
 
     @Test

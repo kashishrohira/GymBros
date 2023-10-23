@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -15,9 +18,9 @@ public class Workout {
     //          and stores local date of when the workout was created
     public Workout() {
         this.workout = new ArrayList<Exercise>();
-        this.dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");  // ?????
-        LocalDateTime localDate = LocalDateTime.now(); // ???
-        this.date = dtf.format(localDate); // ?????
+        this.dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
+        LocalDateTime localDate = LocalDateTime.now();
+        this.date = dtf.format(localDate);
     }
 
     // MODIFIES: this
@@ -51,5 +54,24 @@ public class Workout {
     // EFFECTS: returns the list of exercises in this workout
     public List<Exercise> getWorkoutExercises() {
         return this.workout;
+    }
+
+    // DOCUMENTATION?????????????????????????????????
+    public JSONObject ToJson() {
+        JSONObject json = new JSONObject();
+        json.put("date", date);
+        json.put("exercises", exercisesToJson());
+        // how to put exercises???????????????????????? CHECK DUMBASS
+        return json;
+    }
+
+    // EFFECTS: returns exercises in this workout as a JSON array
+    public JSONArray exercisesToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Exercise e: workout) {
+            jsonArray.put(e.toJson());
+        }
+
+        return jsonArray;
     }
 }

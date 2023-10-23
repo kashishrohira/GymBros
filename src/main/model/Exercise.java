@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.util.Date;
 
 // Represents an exercise with name, number of repetitions and date performed
@@ -24,7 +26,12 @@ public class Exercise {
         return this.reps;
     }
 
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", exerciseName);
+        json.put("reps", reps);
+        return json;
 
-
+    }
 
 }

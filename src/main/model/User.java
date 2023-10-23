@@ -1,11 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User implements Writable {
     // Constants
     public static final String defaultBio = "default bio";
 
@@ -173,4 +177,52 @@ public class User {
         }
         return null;
     }
+
+    // started from here
+
+    // MODIFIES: this
+    // EFFECTS: sets the user's following to the given list of users
+    public void setFollowing(List<User> following) {
+        this.following = following;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the user's followers to the given list of users
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject user = new JSONObject();
+        user.put("username", userName);
+        user.put("password", password);
+        user.put("bio", bio);
+        user.put("following", usersToJson(following));
+        user.put("followers", usersToJson(followers));
+        user.put("workoutLog", workoutLogToJson());
+        return user;
+    }
+
+    // EFFECTS: returns the user's workout log as a JSONArray
+    public JSONArray workoutLogToJson() {
+        JSONArray workoutLog = new JSONArray();
+
+        for (Workout w: this.workoutLog) {
+            workoutLog.put(w.ToJson());
+        }
+
+        return workoutLog;
+    }
+
+    // EFFECTS: returns the user's following/follower list as a JSONArray
+    public JSONArray usersToJson(List<User> users) {
+        JSONArray usersJson = new JSONArray();
+
+        for (User u: users) {
+            usersJson.put(u.toJson());
+        }
+        return usersJson;
+    }
+
 }
