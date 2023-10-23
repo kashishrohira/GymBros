@@ -4,8 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -209,7 +207,7 @@ public class User implements Writable {
         JSONArray workoutLog = new JSONArray();
 
         for (Workout w: this.workoutLog) {
-            workoutLog.put(w.ToJson());
+            workoutLog.put(w.toJson());
         }
 
         return workoutLog;
