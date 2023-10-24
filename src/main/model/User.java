@@ -196,11 +196,7 @@ public class User implements Writable {
 
     // EFFECTS: returns the user's following/follower list as a JSONArray
     public JSONArray usersToJson(List<String> users) {
-        JSONArray usersJson = new JSONArray();
-
-        for (String u: users) {
-            usersJson.put(u);
-        }
+        JSONArray usersJson = new JSONArray(users);
         return usersJson;
     }
 
