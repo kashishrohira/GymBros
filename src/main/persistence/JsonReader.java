@@ -106,6 +106,7 @@ public class JsonReader {
         user.setBio(about);
         user.setFollowing(following);
         user.setFollowers(followers);
+        user.setWorkoutLog(workoutLog);
 
         return user;
     }

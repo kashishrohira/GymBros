@@ -75,14 +75,14 @@ public class JsonWriterTest extends JsonTest {
             assertEquals(0, gymBros.getCurrentlyLoggedInUser().getFollowers().size());
             assertEquals("user2", gymBros.getCurrentlyLoggedInUser().getUsername());
             assertEquals("123123123", gymBros.getCurrentlyLoggedInUser().getPassword());
-//            assertEquals(user2, gymBros.getCurrentlyLoggedInUser());
+            assertEquals(1, gymBros.getCurrentlyLoggedInUser().getWorkoutLog().size());
 
-            List<Workout> expected = new ArrayList<>();
-            Workout w = new Workout();
-            Exercise e = new Exercise("Squat", 20);
-            w.addExercise(e);
-            expected.add(w);
-            assertEquals(expected, gymBros.getCurrentlyLoggedInUser().getWorkoutLog());
+            String date;
+            DateTimeFormatter dtf;
+            dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
+            LocalDateTime localDate = LocalDateTime.now();
+            date = dtf.format(localDate);
+            assertEquals(date, gymBros.getCurrentlyLoggedInUser().getWorkoutLog().get(0).getDate());
 
             String date;
             DateTimeFormatter dtf;

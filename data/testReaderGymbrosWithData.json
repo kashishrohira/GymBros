@@ -11,7 +11,14 @@
           "name": "Squat"
         }]
       }],
-      "following": [],
+      "following": [{
+        "password": "abababab",
+        "followers": [],
+        "workoutLog": [],
+        "following": [],
+        "bio": "default bio",
+        "username": "user2"
+      }],
       "followers": []
     },
   "users": []

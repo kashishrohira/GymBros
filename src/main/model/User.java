@@ -173,6 +173,11 @@ public class User implements Writable {
 
     // started from here
 
+    // EFFECTS: sets the user's workout log to the given workout log
+    public void setWorkoutLog(List<Workout> workoutLog) {
+        this.workoutLog = workoutLog;
+    }
+
     // MODIFIES: this
     // EFFECTS: sets the user's following to the given list of users
     public void setFollowing(List<User> following) {
