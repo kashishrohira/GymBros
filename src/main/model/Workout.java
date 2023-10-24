@@ -68,11 +68,11 @@ public class Workout implements Writable {
     }
 
     @Override
+    // EFFECTS: converts Workout to JSONObject
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("date", date);
         json.put("exercises", exercisesToJson());
-        // how to put exercises???????????????????????? CHECK DUMBASS
         return json;
     }
 

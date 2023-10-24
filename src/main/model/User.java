@@ -172,6 +172,7 @@ public class User implements Writable {
     }
 
     @Override
+    // EFFECTS: converts User to JSONObject
     public JSONObject toJson() {
         JSONObject user = new JSONObject();
         user.put("username", userName);

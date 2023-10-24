@@ -115,6 +115,7 @@ public class GymBros implements Writable {
     }
 
     @Override
+    // EFFECTS: returns GymBros as a JSONObject
     public JSONObject toJson() {
         JSONObject gymBros = new JSONObject();
         gymBros.put("loggedIn",this.loggedIn);
@@ -160,13 +161,6 @@ public class GymBros implements Writable {
     public void setUsernameUsers(HashMap<String, User> usernameUsers) {
         this.usernameUser = usernameUsers;
     }
-
-    // REQUIRES: map contains registered users on the app
-    // MODIFIES: this
-    // EFFECTS: sets the map of usernames and passwords and users to the given map
-//    public void setUsernamePasswords(HashMap<String, String> usernamePasswords) {
-//        this.usernamePassword = usernamePasswords;
-//    }
 
 
 }

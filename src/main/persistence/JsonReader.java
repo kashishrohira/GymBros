@@ -133,6 +133,7 @@ public class JsonReader {
         return workout;
     }
 
+    // EFFECTS: reads a list of exercises from a JSONArray and returns it
     private List<Exercise> jsonToExercises(JSONArray exercises) {
         List<Exercise> workout = new ArrayList<>();
         for (Object json: exercises) {
@@ -142,6 +143,7 @@ public class JsonReader {
         return workout;
     }
 
+    // EFFECTS: reads an exercise from a JSONObject and returns it
     private Exercise jsonToExercise(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         int reps = jsonObject.getInt("reps");
