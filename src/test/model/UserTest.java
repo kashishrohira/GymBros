@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class UserTest {
     public User testUser3;
     public Workout testWorkout1;
     public Workout testWorkout2;
+    public Workout testWorkout3;
 
     @BeforeEach
     void runBefore() {
@@ -22,13 +25,14 @@ public class UserTest {
         testUser3 = new User("user3", "123");
         testWorkout1 = new Workout();
         testWorkout2 = new Workout();
+        testWorkout3 = new Workout();
     }
 
     @Test
     void testConstructor() {
         assertEquals("user1", testUser1.getUsername());
         assertEquals("abcd", testUser1.getPassword());
-        assertEquals(" ", testUser1.getBio());
+        assertEquals("default bio", testUser1.getBio());
         assertTrue(testUser1.getFollowing().isEmpty());
     }
 
@@ -193,7 +197,12 @@ public class UserTest {
     @Test
     void testWorkoutOnDateExistsTrue() {
         testUser1.addWorkoutToLog(testWorkout1);
-        assertTrue(testUser1.workoutOnDateExists("October 10, 2023"));
+        String date;
+        DateTimeFormatter dtf;
+        dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
+        LocalDateTime localDate = LocalDateTime.now();
+        date = dtf.format(localDate);
+        assertTrue(testUser1.workoutOnDateExists(date));
     }
 
     @Test
@@ -203,13 +212,22 @@ public class UserTest {
 
     @Test
     void testGetWorkoutOnDate() {
-        testUser1.addWorkoutToLog(testWorkout1);
-        assertEquals(testWorkout1, testUser1.getWorkoutOnDate("October 10, 2023"));
+        testUser1.addWorkoutToLog(testWorkout3);
+        String date;
+        DateTimeFormatter dtf;
+        dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
+        LocalDateTime localDate = LocalDateTime.now();
+        date = dtf.format(localDate);
+        assertEquals(testWorkout3, testUser1.getWorkoutOnDate(date));
     }
 
     @Test
     void testGetWorkoutOnDateNull() {
-        testUser1.addWorkoutToLog(testWorkout1);
-        assertEquals(null, testUser1.getWorkoutOnDate("October 11, 2023"));
+        String date;
+        DateTimeFormatter dtf;
+        dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
+        LocalDateTime localDate = LocalDateTime.now();
+        date = dtf.format(localDate);
+        assertEquals(null, testUser1.getWorkoutOnDate(date));
     }
 }

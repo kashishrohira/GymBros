@@ -18,7 +18,15 @@
         "following": [],
         "bio": "default bio",
         "username": "user2"
-      }],
+      },
+        {
+          "password": "123123123",
+          "followers": [],
+          "workoutLog": [],
+          "following": [],
+          "bio": "default bio",
+          "username": "user3"
+        }],
       "followers": []
     },
   "users": []
