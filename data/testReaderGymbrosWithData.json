@@ -7,10 +7,11 @@
       "workouts": [
         {
           "date": "October 22, 2023",
-          "exercises": [squats 10]
-        }
+          "exercises": {"Squat 20"}
+          }
       ],
       "following": [],
       "followers": []
-    }
+    },
+  "users": []
 }

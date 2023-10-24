@@ -125,11 +125,6 @@ public class User implements Writable {
         return followerList;
     }
 
-    // MODIFIES: this
-    // EFFECTS: adds given workout to the user's workout log
-    public void addWorkout(Workout workout) {
-        this.workoutLog.add(workout);
-    }
 
     // REQUIRES: length is at least minimum password length
     // MODIFIES: this

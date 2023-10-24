@@ -33,7 +33,8 @@ public class GymBrosTest {
 
     @Test
     void testCreateNewUser() {
-        testGymBros.createNewUser("kash","nononono");
+        User newUser = new User("kash", "nononono");
+        testGymBros.createNewUser(newUser);
         User expected = new User("kash", "nononono");
         assertEquals("kash", testGymBros.getCurrentlyLoggedInUser().getUsername());
         assertEquals("nononono", testGymBros.getCurrentlyLoggedInUser().getPassword());
@@ -49,19 +50,22 @@ public class GymBrosTest {
 
     @Test // username does not exist
     void testCheckUsernameWhenLoggingInDoesNotExist() {
-        testGymBros.createNewUser("kash","nononono");
+        User newUser = new User("kash", "nononono");
+        testGymBros.createNewUser(newUser);
         assertFalse(testGymBros.checkUsernameWhenLoggingIn("no"));
     }
 
     @Test // username exists
     void testCheckUsernameWhenLoggingInExists() {
-        testGymBros.createNewUser("kash","nononono");
+        User newUser = new User("kash", "nononono");
+        testGymBros.createNewUser(newUser);
         assertTrue(testGymBros.checkUsernameWhenLoggingIn("kash"));
     }
 
     @Test // incorrect password
     void testCheckPasswordWhenLoggingIn() {
-        testGymBros.createNewUser("kash","nononono");
+        User newUser = new User("kash", "nononono");
+        testGymBros.createNewUser(newUser);
         assertTrue(testGymBros.checkPasswordWhenLoggingIn("kash", "nononono"));
         assertFalse(testGymBros.checkPasswordWhenLoggingIn("kash", "nonono"));
     }
@@ -111,32 +115,37 @@ public class GymBrosTest {
     @Test // not unique username
     void testIsUsernameUniqueNotUnique() {
         String username = "kash";
-        testGymBros.createNewUser("kash", "nononono");
+        User newUser = new User("kash", "nononono");
+        testGymBros.createNewUser(newUser);
         assertFalse(testGymBros.isUsernameUnique(username));
     }
 
     @Test // unique username
     void testIsUsernameUnique() {
         String username = "kash";
-        testGymBros.createNewUser("kashish", "nononono");
+        User newUser = new User("kash", "nononono");
+        testGymBros.createNewUser(newUser);
         assertTrue(testGymBros.isUsernameUnique(username));
     }
 
     @Test // user does not exist
     void testDoesUserExistDoesNotExist() {
-        testGymBros.createNewUser("kash", "nonononono");
+        User newUser = new User("kash", "nononono");
+        testGymBros.createNewUser(newUser);
         assertFalse(testGymBros.doesUserExist("kashish"));
     }
 
     @Test // user exists
     void testDoesUserExist() {
-        testGymBros.createNewUser("kash", "nonononono");
+        User newUser = new User("kash", "nononono");
+        testGymBros.createNewUser(newUser);
         assertTrue(testGymBros.doesUserExist("kash"));
     }
 
     @Test
     void testGetUserWithUsername() {
-        testGymBros.createNewUser("kash", "nononono");
+        User newUser = new User("kash", "nononono");
+        testGymBros.createNewUser(newUser);
 
         assertEquals("kash", testGymBros.getUserWithUsername("kash").getUsername());
         assertEquals("nononono", testGymBros.getUserWithUsername("kash").getPassword());

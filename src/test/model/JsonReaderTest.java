@@ -89,6 +89,6 @@ public class JsonReaderTest extends JsonTest {
 
         testUser1.setPassword(password);
         testUser1.setBio(bio);
-        testUser1.addWorkout(workout);
+        testUser1.addWorkoutToLog(workout);
     }
 }

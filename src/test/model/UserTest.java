@@ -136,15 +136,15 @@ public class UserTest {
 
     @Test // adding single workout to workout log
     void testAddSingleWorkout() {
-        testUser1.addWorkout(testWorkout1);
+        testUser1.addWorkoutToLog(testWorkout1);
         assertEquals(1, testUser1.getWorkoutLog().size());
         assertEquals(testWorkout1, testUser1.getWorkoutLog().get(0));
     }
 
     @Test // add multiple workouts to workout log
     void testAddMultipleWorkouts() {
-        testUser1.addWorkout(testWorkout1);
-        testUser1.addWorkout(testWorkout2);
+        testUser1.addWorkoutToLog(testWorkout1);
+        testUser1.addWorkoutToLog(testWorkout2);
         assertEquals(2, testUser1.getWorkoutLog().size());
         assertEquals(testWorkout1, testUser1.getWorkoutLog().get(0));
         assertEquals(testWorkout2, testUser1.getWorkoutLog().get(1));

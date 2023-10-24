@@ -1,12 +1,31 @@
 {
-    "loggedIn": true,
+    "loggedIn": false,
     "user": {
-        "username": "user1",
         "password": "abababab",
         "followers": [],
-        "workoutLog": [],
+        "workoutLog": [{
+            "date": "October 23, 2023",
+            "exercises": [{
+                "reps": 10,
+                "name": "squat"
+            }]
+        }],
         "following": [],
-        "bio": "cool"
+        "bio": "default bio",
+        "username": "kashish"
     },
-    "users": []
+    "users": [{
+        "password": "abababab",
+        "followers": [],
+        "workoutLog": [{
+            "date": "October 23, 2023",
+            "exercises": [{
+                "reps": 10,
+                "name": "squat"
+            }]
+        }],
+        "following": [],
+        "bio": "default bio",
+        "username": "kashish"
+    }]
 }

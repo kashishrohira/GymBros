@@ -55,10 +55,10 @@ public class GymBros implements Writable {
 
     // MODIFIES: this
     // EFFECTS: Creates a new user and adds the user to the list of all users on the app
-    public void createNewUser(String username, String password) {
-        currentlyLoggedInUser = new User(username, password);
-        usernameUser.put(username, currentlyLoggedInUser);
-        usernamePassword.put(username, password);
+    public void createNewUser(User user) {
+        currentlyLoggedInUser = user;
+        usernameUser.put(user.getUsername(), user);
+        usernamePassword.put(user.getUsername(), user.getPassword());
     }
 
     // EFFECTS: returns true if username exists on the app, false otherwise
@@ -97,6 +97,11 @@ public class GymBros implements Writable {
     // EFFECTS: returns the user with the given username
     public User getUserWithUsername(String username) {
         return usernameUser.get(username);
+    }
+
+    // EFFECTS: returns the number of users on the app
+    public int getNumUsers() {
+        return usernameUser.size();
     }
 
     // NEW STARTS HERE !!!!!
@@ -139,6 +144,7 @@ public class GymBros implements Writable {
     // EFFECTS: sets the current user to the given user
     public void setCurrentlyLoggedInUser(User currentlyLoggedInUser) {
         this.currentlyLoggedInUser = currentlyLoggedInUser;
+
     }
 
     // MODIFIES: this
