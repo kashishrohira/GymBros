@@ -84,12 +84,6 @@ public class JsonWriterTest extends JsonTest {
             date = dtf.format(localDate);
             assertEquals(date, gymBros.getCurrentlyLoggedInUser().getWorkoutLog().get(0).getDate());
 
-            String date;
-            DateTimeFormatter dtf;
-            dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
-            LocalDateTime localDate = LocalDateTime.now();
-            date = dtf.format(localDate);
-            assertEquals(1, gymBros.getCurrentlyLoggedInUser().getWorkoutLog().size());
         } catch (IOException e) {
             fail("IOException should not have been thrown!");
         }
