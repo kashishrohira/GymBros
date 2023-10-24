@@ -68,60 +68,43 @@ public class User implements Writable {
     // MODIFIES: this, user
     // EFFECTS: adds the given user to this user's following list if not already there
     //          and adds this user to the given user's followers
-    public void addToFollowing(User user) {
-        if (!this.following.contains(user)) {
-            this.following.add(user.getUsername());
-            user.addFollower(this);
+    public void addToFollowing(String username) {
+        if (!this.following.contains(username)) {
+            this.following.add(username);
+//            user.addFollower(this);
         }
     }
 
     // MODIFIES: this, user
     // EFFECTS: adds the given user to this user's followers if not already there
     //          and adds this user to the given user's following list
-    public void addFollower(User user) {
-        if (!this.followers.contains(user)) {
-            this.followers.add(user.getUsername());
-            user.addToFollowing(this);
+    public void addFollower(String username) {
+        if (!this.followers.contains(username)) {
+            this.followers.add(username);
+//            user.addToFollowing(this);
         }
     }
 
     // MODIFIES, this, user
     // EFFECTS: if this user's following contains given user, then removes given user from following
     //          and removes this from given user's followers
-    public void removeFromFollowing(User user) {
-        if (this.following.contains(user)) {
-            this.following.remove(user);
-            user.removeFollower(this);
+    public void removeFromFollowing(String username) {
+        if (this.following.contains(username)) {
+            this.following.remove(username);
+//            user.removeFollower(this);
         }
     }
 
     // MODIFIES, this, user
     // EFFECTS: if this user's followers contains given user, then removes given user from followers
     //          and removes this user from given user's following list
-    public void removeFollower(User user) {
-        if (this.followers.contains(user)) {
-            this.followers.remove(user);
-            user.removeFromFollowing(this);
+    public void removeFollower(String username) {
+        if (this.followers.contains(username)) {
+            this.followers.remove(username);
+//            user.removeFromFollowing(this);
         }
     }
 
-    // EFFECTS: returns the list of usernames of users that this user follows
-    public List<String> getFollowingUsernames() {
-        List<String> followingList = new ArrayList<>();
-        for (String u: this.following) {
-            followingList.add(u);
-        }
-        return followingList;
-    }
-
-    // EFFECTS: returns the list of followers of this user
-    public List<String> getFollowersUsernames() {
-        List<String> followerList = new ArrayList<>();
-        for (String u: this.followers) {
-            followerList.add(u);
-        }
-        return followerList;
-    }
 
 
     // REQUIRES: length is at least minimum password length

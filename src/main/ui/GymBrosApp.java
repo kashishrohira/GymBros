@@ -311,7 +311,7 @@ public class GymBrosApp {
         follow = input.next();
 
         if (gymBros.doesUserExist(follow)) {
-            User following = gymBros.getUserWithUsername(follow);
+            String following = follow;
             currentlyLoggedInUser.addToFollowing(following);
         } else {
             System.out.println("User does not exist! Please enter a valid username");
@@ -324,8 +324,8 @@ public class GymBrosApp {
         String command = null;
         System.out.println("Your username is " + currentlyLoggedInUser.getUsername());
         System.out.println("Your bio is " + currentlyLoggedInUser.getBio());
-        System.out.println("You are following " + currentlyLoggedInUser.getFollowingUsernames());
-        System.out.println("Your followers are " + currentlyLoggedInUser.getFollowersUsernames());
+        System.out.println("You are following " + currentlyLoggedInUser.getFollowing());
+        System.out.println("Your followers are " + currentlyLoggedInUser.getFollowers());
     }
 
 

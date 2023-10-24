@@ -106,6 +106,7 @@ public class GymBros implements Writable {
 
     // NEW STARTS HERE !!!!!
 
+
     // MODIFIES: this
     // EFFECTS: logs the user out of the app
     public void logOut() {

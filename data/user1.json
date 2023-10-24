@@ -1,0 +1,29 @@
+{
+    "loggedIn": false,
+    "user": {
+        "password": "123123123",
+        "followers": [],
+        "workoutLog": [],
+        "following": ["kashish"],
+        "bio": "default bio",
+        "username": "kash"
+    },
+    "users": [
+        {
+            "password": "abababab",
+            "followers": [],
+            "workoutLog": [],
+            "following": ["kashish"],
+            "bio": "default bio",
+            "username": "kashish"
+        },
+        {
+            "password": "123123123",
+            "followers": [],
+            "workoutLog": [],
+            "following": ["kashish"],
+            "bio": "default bio",
+            "username": "kash"
+        }
+    ]
+}

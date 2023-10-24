@@ -38,104 +38,104 @@ public class UserTest {
 
     @Test // add single user to following
     void testAddToFollowingSingleUser() {
-        testUser1.addToFollowing(testUser2);
+        testUser1.addToFollowing(testUser2.getUsername());
         assertEquals(1, testUser1.getFollowing().size());
-        assertEquals(testUser2, testUser1.getFollowing().get(0));
+        assertEquals(testUser2.getUsername(), testUser1.getFollowing().get(0));
     }
 
     @Test // add multiple users to following
     void testAddToFollowingMultipleUsers() {
-        testUser1.addToFollowing(testUser2);
-        testUser1.addToFollowing(testUser3);
+        testUser1.addToFollowing(testUser2.getUsername());
+        testUser1.addToFollowing(testUser3.getUsername());
         assertEquals(2, testUser1.getFollowing().size());
-        assertEquals(testUser2, testUser1.getFollowing().get(0));
-        assertEquals(testUser3, testUser1.getFollowing().get(1));
+        assertEquals(testUser2.getUsername(), testUser1.getFollowing().get(0));
+        assertEquals(testUser3.getUsername(), testUser1.getFollowing().get(1));
     }
 
     @Test // adding a user that is already in the following list
     public void testAddToFollowingAlreadyFollowingUser() {
-        testUser1.addToFollowing(testUser3);
-        testUser1.addToFollowing(testUser2);
-        testUser1.addToFollowing(testUser2);
+        testUser1.addToFollowing(testUser3.getUsername());
+        testUser1.addToFollowing(testUser2.getUsername());
+        testUser1.addToFollowing(testUser2.getUsername());
         assertEquals(2, testUser1.getFollowing().size());
-        assertEquals(testUser3, testUser1.getFollowing().get(0));
-        assertEquals(testUser2, testUser1.getFollowing().get(1));
+        assertEquals(testUser3.getUsername(), testUser1.getFollowing().get(0));
+        assertEquals(testUser2.getUsername(), testUser1.getFollowing().get(1));
     }
 
     @Test // add single follower
     void testAddFollowerSingleUser() {
-        testUser1.addFollower(testUser2);
+        testUser1.addFollower(testUser2.getUsername());
         assertEquals(1, testUser1.getFollowers().size());
-        assertEquals(testUser2, testUser1.getFollowers().get(0));
+        assertEquals(testUser2.getUsername(), testUser1.getFollowers().get(0));
     }
 
     @Test // add multiple followers
     void testAddFollowerMultipleUsers() {
-        testUser1.addFollower(testUser2);
-        testUser1.addFollower(testUser3);
+        testUser1.addFollower(testUser2.getUsername());
+        testUser1.addFollower(testUser3.getUsername());
         assertEquals(2, testUser1.getFollowers().size());
-        assertEquals(testUser2, testUser1.getFollowers().get(0));
-        assertEquals(testUser3, testUser1.getFollowers().get(1));
+        assertEquals(testUser2.getUsername(), testUser1.getFollowers().get(0));
+        assertEquals(testUser3.getUsername(), testUser1.getFollowers().get(1));
     }
 
     @Test
     void testRemoveFromFollowingSingleUser() {
-        testUser1.addToFollowing(testUser2);
-        testUser1.addToFollowing(testUser3);
-        testUser1.removeFromFollowing(testUser2);
+        testUser1.addToFollowing(testUser2.getUsername());
+        testUser1.addToFollowing(testUser3.getUsername());
+        testUser1.removeFromFollowing(testUser2.getUsername());
         assertEquals(1, testUser1.getFollowing().size());
-        assertEquals(testUser3, testUser1.getFollowing().get(0));
+        assertEquals(testUser3.getUsername(), testUser1.getFollowing().get(0));
     }
 
     @Test
     void testRemoveFromFollowingMultipleUsers() {
-        testUser1.addToFollowing(testUser2);
-        testUser1.addToFollowing(testUser3);
-        testUser1.removeFromFollowing(testUser2);
-        testUser1.removeFromFollowing(testUser3);
+        testUser1.addToFollowing(testUser2.getUsername());
+        testUser1.addToFollowing(testUser3.getUsername());
+        testUser1.removeFromFollowing(testUser2.getUsername());
+        testUser1.removeFromFollowing(testUser3.getUsername());
         assertEquals(0, testUser1.getFollowing().size());
         assertTrue(testUser1.getFollowing().isEmpty());
     }
 
     @Test // remove single follower
     void testRemoveSingleFollower() {
-        testUser1.addFollower(testUser2);
-        testUser1.addFollower(testUser3);
-        testUser1.removeFollower(testUser2);
+        testUser1.addFollower(testUser2.getUsername());
+        testUser1.addFollower(testUser3.getUsername());
+        testUser1.removeFollower(testUser2.getUsername());
         assertEquals(1, testUser1.getFollowers().size());
-        assertEquals(testUser3, testUser1.getFollowers().get(0));
+        assertEquals(testUser3.getUsername(), testUser1.getFollowers().get(0));
     }
 
     @Test // remove multiple followers
     void testRemoveMultipleFollowers() {
-        testUser1.addFollower(testUser2);
-        testUser1.addFollower(testUser3);
-        testUser1.removeFollower(testUser2);
-        testUser1.removeFollower(testUser3);
+        testUser1.addFollower(testUser2.getUsername());
+        testUser1.addFollower(testUser3.getUsername());
+        testUser1.removeFollower(testUser2.getUsername());
+        testUser1.removeFollower(testUser3.getUsername());
         assertEquals(0, testUser1.getFollowers().size());
         assertTrue(testUser1.getFollowers().isEmpty());
     }
 
     @Test
     void testGetFollowingUsernames() {
-        assertTrue(testUser1.getFollowingUsernames().isEmpty());
-        testUser1.addToFollowing(testUser2);
-        testUser1.addToFollowing(testUser3);
+        assertTrue(testUser1.getFollowing().isEmpty());
+        testUser1.addToFollowing(testUser2.getUsername());
+        testUser1.addToFollowing(testUser3.getUsername());
         List<String> expected = new ArrayList<>();
         expected.add("user2");
         expected.add("user3");
-        assertEquals(expected, testUser1.getFollowingUsernames());
+        assertEquals(expected, testUser1.getFollowing());
     }
 
     @Test
     void testGetFollowersUsernames() {
-        assertTrue(testUser1.getFollowersUsernames().isEmpty());
-        testUser1.addFollower(testUser2);
-        testUser1.addFollower(testUser3);
+        assertTrue(testUser1.getFollowers().isEmpty());
+        testUser1.addFollower(testUser2.getUsername());
+        testUser1.addFollower(testUser3.getUsername());
         List<String> expected = new ArrayList<>();
         expected.add("user2");
         expected.add("user3");
-        assertEquals(expected, testUser1.getFollowersUsernames());
+        assertEquals(expected, testUser1.getFollowers());
     }
 
     @Test // adding single workout to workout log
