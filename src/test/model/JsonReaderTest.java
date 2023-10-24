@@ -6,6 +6,8 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 
@@ -71,9 +73,17 @@ public class JsonReaderTest extends JsonTest {
             initAssertUser();
             HashMap<String, User> users = new HashMap<>();
             users.put("user1", testUser1);
-            assertEquals("user1", users.get("user1").getUsername());
-            assertEquals("abababab", users.get("user1").getPassword());
-            assertEquals(1, users.get("user1").getWorkoutLog().size());
+            assertEquals("user1", testGymBros.getCurrentlyLoggedInUser().getUsername());
+            assertEquals("abababab", testGymBros.getCurrentlyLoggedInUser().getPassword());
+            assertEquals(1, testGymBros.getCurrentlyLoggedInUser().getWorkoutLog().size());
+
+            Workout w1 = testGymBros.getCurrentlyLoggedInUser().getWorkoutLog().get(0);
+            String date;
+            DateTimeFormatter dtf;
+            dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
+            LocalDateTime localDate = LocalDateTime.now();
+            date = dtf.format(localDate);
+            assertEquals(date, testGymBros.getCurrentlyLoggedInUser().getWorkoutLog().get(0).getDate());
         } catch (IOException e){
             fail("IOException should not have been thrown");
         }
@@ -84,7 +94,7 @@ public class JsonReaderTest extends JsonTest {
         String password = "abababab";
         String bio = "cool";
         Workout workout = new Workout();
-        Exercise exercise = new Exercise("squats", 10);
+        Exercise exercise = new Exercise("Squat", 20);
         workout.addExercise(exercise);
 
         testUser1.setPassword(password);

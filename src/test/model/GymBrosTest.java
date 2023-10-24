@@ -122,11 +122,12 @@ public class GymBrosTest {
 
     @Test // unique username
     void testIsUsernameUnique() {
-        String username = "kash";
+        String username = "kashish";
         User newUser = new User("kash", "nononono");
         testGymBros.createNewUser(newUser);
         assertTrue(testGymBros.isUsernameUnique(username));
     }
+
 
     @Test // user does not exist
     void testDoesUserExistDoesNotExist() {
