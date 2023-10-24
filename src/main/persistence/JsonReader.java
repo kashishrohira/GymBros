@@ -1,5 +1,6 @@
 package persistence;
 
+import model.Exercise;
 import model.GymBros;
 import model.User;
 import model.Workout;
@@ -91,12 +92,14 @@ public class JsonReader {
         return users;
     }
 
+    // EFFECTS: reads a user from a JSONObject and returns it
     private User jsonToUser(JSONObject userJson) {
         String username = userJson.getString("username");
         String password = userJson.getString("password");
         String about = userJson.getString("bio");
         List<User> following = jsonToUsers(userJson.getJSONArray("following"));
         List<User> followers = jsonToUsers(userJson.getJSONArray("followers"));
+        List<Workout> workoutLog = jsonToWorkoutLog(userJson.getJSONArray("workoutLog"));
 
         User user = new User(username, password);
         user.setPassword(password);
@@ -105,6 +108,45 @@ public class JsonReader {
         user.setFollowers(followers);
 
         return user;
+    }
+
+    // EFFECTS: reads a workout log from a JSONArray and returns it
+    private List<Workout> jsonToWorkoutLog(JSONArray workoutLogJson) {
+        List<Workout> workoutLog = new ArrayList<>();
+
+        for (Object json: workoutLogJson) {
+            Workout w = jsonToWorkout((JSONObject) json);
+            workoutLog.add(w);
+        }
+
+        return workoutLog;
+    }
+
+    // EFFECTS: reads a workout from a JSONArray and returns it
+    private Workout jsonToWorkout(JSONObject json) {
+        Workout workout = new Workout();
+        String date = json.getString("date");
+        List<Exercise> exercises = jsonToExercises(json.getJSONArray("exercises"));
+
+        workout.setExercises(exercises);
+        workout.setDate(date);
+        return workout;
+    }
+
+    private List<Exercise> jsonToExercises(JSONArray exercises) {
+        List<Exercise> workout = new ArrayList<>();
+        for (Object json: exercises) {
+            Exercise e = jsonToExercise((JSONObject) json);
+            workout.add(e);
+        }
+        return workout;
+    }
+
+    private Exercise jsonToExercise(JSONObject jsonObject) {
+        String name = jsonObject.getString("name");
+        int reps = jsonObject.getInt("reps");
+        Exercise e = new Exercise(name, reps);
+        return e;
     }
 
 }

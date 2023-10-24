@@ -163,9 +163,9 @@ public class GymBros implements Writable {
     // REQUIRES: map contains registered users on the app
     // MODIFIES: this
     // EFFECTS: sets the map of usernames and passwords and users to the given map
-    public void setUsernamePasswords(HashMap<String, String> usernamePasswords) {
-        this.usernamePassword = usernamePasswords;
-    }
+//    public void setUsernamePasswords(HashMap<String, String> usernamePasswords) {
+//        this.usernamePassword = usernamePasswords;
+//    }
 
 
 }

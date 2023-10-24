@@ -7,6 +7,8 @@ import persistence.JsonWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -52,13 +54,13 @@ public class JsonWriterTest extends JsonTest {
             gymBros.setCurrentlyLoggedInUser(user);
 
             User user2 = new User("user2", "123123123");
-            gymBros.createNewUser(user);
+            gymBros.createNewUser(user2);
 
-            user.setBio("cool");
+            user2.setBio("cool");
             Workout workout = new Workout();
             Exercise exercise = new Exercise("Squat", 20);
             workout.addExercise(exercise);
-            user.addWorkoutToLog(workout);
+            user2.addWorkoutToLog(workout);
 
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralGymbros.json");
             writer.open();
@@ -71,8 +73,16 @@ public class JsonWriterTest extends JsonTest {
             assertEquals(2, gymBros.getNumUsers());
             assertEquals("cool", gymBros.getCurrentlyLoggedInUser().getBio());
             assertEquals(0, gymBros.getCurrentlyLoggedInUser().getFollowers().size());
-            assertEquals("user1", gymBros.getCurrentlyLoggedInUser().getUsername());
-            assertEquals("abababab", gymBros.getCurrentlyLoggedInUser().getPassword());
+            assertEquals("user2", gymBros.getCurrentlyLoggedInUser().getUsername());
+            assertEquals("123123123", gymBros.getCurrentlyLoggedInUser().getPassword());
+//            assertEquals(user2, gymBros.getCurrentlyLoggedInUser());
+
+            List<Workout> expected = new ArrayList<>();
+            Workout w = new Workout();
+            Exercise e = new Exercise("Squat", 20);
+            w.addExercise(e);
+            expected.add(w);
+            assertEquals(expected, gymBros.getCurrentlyLoggedInUser().getWorkoutLog());
 
             String date;
             DateTimeFormatter dtf;

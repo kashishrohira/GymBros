@@ -2,6 +2,7 @@ package model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import persistence.Writable;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Workout is a list of exercises
-public class Workout {
+public class Workout implements Writable {
     List<Exercise> workout;
     private String date;
     private DateTimeFormatter dtf;
@@ -56,7 +57,17 @@ public class Workout {
         return this.workout;
     }
 
-    // DOCUMENTATION?????????????????????????????????
+    // EFFECTS: sets the workout to the given workout
+    public void setExercises(List<Exercise> workout) {
+        this.workout = workout;
+    }
+
+    // EFFECTS: sets the workout to the given workout
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("date", date);

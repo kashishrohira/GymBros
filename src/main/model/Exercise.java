@@ -26,6 +26,18 @@ public class Exercise {
         return this.reps;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the name of the exercise to the given name
+    public void setExerciseName(String name) {
+        this.exerciseName = name;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the reps of the exercise to the given int
+    public void setExerciseReps(int reps) {
+        this.reps = reps;
+    }
+
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", exerciseName);
