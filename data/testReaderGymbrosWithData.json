@@ -11,8 +11,8 @@
           "name": "Squat"
         }]
       }],
-      "following": ["user2"],
-      "followers": ["user3"]
+      "following": ["user2", "kashish"],
+      "followers": ["user3", "yayuser"]
     },
   "users": []
 }
