@@ -77,15 +77,17 @@ public class JsonReaderTest extends JsonTest {
             assertEquals("abababab", testGymBros.getCurrentlyLoggedInUser().getPassword());
             assertEquals(1, testGymBros.getCurrentlyLoggedInUser().getFollowing().size());
             assertEquals("user2", testGymBros.getCurrentlyLoggedInUser().getFollowing().get(0));
+            assertEquals(1, testGymBros.getCurrentlyLoggedInUser().getFollowers().size());
+            assertEquals("user3", testGymBros.getCurrentlyLoggedInUser().getFollowers().get(0));
             assertEquals(1, testGymBros.getCurrentlyLoggedInUser().getWorkoutLog().size());
 
             Workout w1 = testGymBros.getCurrentlyLoggedInUser().getWorkoutLog().get(0);
-            String date;
-            DateTimeFormatter dtf;
-            dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
-            LocalDateTime localDate = LocalDateTime.now();
-            date = dtf.format(localDate);
-            assertEquals(date, testGymBros.getCurrentlyLoggedInUser().getWorkoutLog().get(0).getDate());
+//            String date;
+//            DateTimeFormatter dtf;
+//            dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
+//            LocalDateTime localDate = LocalDateTime.now();
+//            date = dtf.format(localDate);
+            assertEquals("October 24, 2023", testGymBros.getCurrentlyLoggedInUser().getWorkoutLog().get(0).getDate());
         } catch (IOException e){
             fail("IOException should not have been thrown");
         }
