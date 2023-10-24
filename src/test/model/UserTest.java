@@ -260,4 +260,16 @@ public class UserTest {
         date = dtf.format(localDate);
         assertEquals(null, testUser1.getWorkoutOnDate(date));
     }
+
+    @Test
+    void testGetWorkoutOnDateNotEqual() {
+        testWorkout3.setDate("October 10, 2023");
+        testUser1.addWorkoutToLog(testWorkout3);
+        String date;
+        DateTimeFormatter dtf;
+        dtf = DateTimeFormatter.ofPattern("MMMM dd, YYYY");
+        LocalDateTime localDate = LocalDateTime.now();
+        date = dtf.format(localDate);
+        assertEquals(null, testUser1.getWorkoutOnDate(date));
+    }
 }
