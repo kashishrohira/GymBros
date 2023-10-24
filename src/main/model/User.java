@@ -15,8 +15,8 @@ public class User implements Writable {
     private final String userName;
     private String password;
     private String bio;
-    private List<User> following;
-    private List<User> followers;
+    private List<String> following;
+    private List<String> followers;
 
     private List<Workout> workoutLog;
 
@@ -28,8 +28,8 @@ public class User implements Writable {
         this.userName = userName;
         this.password = password;
         this.bio = defaultBio;
-        this.followers = new ArrayList<User>();
-        this.following = new ArrayList<User>();
+        this.followers = new ArrayList<String>();
+        this.following = new ArrayList<String>();
         this.workoutLog = new ArrayList<Workout>();
     }
 
@@ -50,13 +50,13 @@ public class User implements Writable {
 
     // EFFECTS: returns the list of users that this user is following
     //          in the order they were added
-    public List<User> getFollowing() {
+    public List<String> getFollowing() {
         return this.following;
     }
 
     // EFFECTS: returns the list of users followers of this user
     //          in the order they followed
-    public List<User> getFollowers() {
+    public List<String> getFollowers() {
         return this.followers;
     }
 
@@ -70,7 +70,7 @@ public class User implements Writable {
     //          and adds this user to the given user's followers
     public void addToFollowing(User user) {
         if (!this.following.contains(user)) {
-            this.following.add(user);
+            this.following.add(user.getUsername());
             user.addFollower(this);
         }
     }
@@ -80,7 +80,7 @@ public class User implements Writable {
     //          and adds this user to the given user's following list
     public void addFollower(User user) {
         if (!this.followers.contains(user)) {
-            this.followers.add(user);
+            this.followers.add(user.getUsername());
             user.addToFollowing(this);
         }
     }
@@ -108,9 +108,8 @@ public class User implements Writable {
     // EFFECTS: returns the list of usernames of users that this user follows
     public List<String> getFollowingUsernames() {
         List<String> followingList = new ArrayList<>();
-        for (User u: this.following) {
-            String username = u.getUsername();
-            followingList.add(username);
+        for (String u: this.following) {
+            followingList.add(u);
         }
         return followingList;
     }
@@ -118,9 +117,8 @@ public class User implements Writable {
     // EFFECTS: returns the list of followers of this user
     public List<String> getFollowersUsernames() {
         List<String> followerList = new ArrayList<>();
-        for (User u: this.followers) {
-            String username = u.getUsername();
-            followerList.add(username);
+        for (String u: this.followers) {
+            followerList.add(u);
         }
         return followerList;
     }
@@ -180,13 +178,13 @@ public class User implements Writable {
 
     // MODIFIES: this
     // EFFECTS: sets the user's following to the given list of users
-    public void setFollowing(List<User> following) {
+    public void setFollowing(List<String> following) {
         this.following = following;
     }
 
     // MODIFIES: this
     // EFFECTS: sets the user's followers to the given list of users
-    public void setFollowers(List<User> followers) {
+    public void setFollowers(List<String> followers) {
         this.followers = followers;
     }
 
@@ -214,11 +212,11 @@ public class User implements Writable {
     }
 
     // EFFECTS: returns the user's following/follower list as a JSONArray
-    public JSONArray usersToJson(List<User> users) {
+    public JSONArray usersToJson(List<String> users) {
         JSONArray usersJson = new JSONArray();
 
-        for (User u: users) {
-            usersJson.put(u.toJson());
+        for (String u: users) {
+            usersJson.put(u);
         }
         return usersJson;
     }

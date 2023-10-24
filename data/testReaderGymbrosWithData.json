@@ -11,22 +11,7 @@
           "name": "Squat"
         }]
       }],
-      "following": [{
-        "password": "abababab",
-        "followers": [],
-        "workoutLog": [],
-        "following": [],
-        "bio": "default bio",
-        "username": "user2"
-      },
-        {
-          "password": "123123123",
-          "followers": [],
-          "workoutLog": [],
-          "following": [],
-          "bio": "default bio",
-          "username": "user3"
-        }],
+      "following": ["user2"],
       "followers": []
     },
   "users": []

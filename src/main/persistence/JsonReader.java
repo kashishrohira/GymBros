@@ -70,12 +70,11 @@ public class JsonReader {
     }
 
     // EFFECTS: reads a list of users from a JSONArray and returns it
-    private List<User> jsonToUsers(JSONArray usersJson) {
-        List<User> users = new ArrayList<User>();
+    private List<String> jsonToUsers(JSONArray usersJson) {
+        List<String> users = new ArrayList<>();
 
         for (Object json: usersJson) {
-            User user = jsonToUser((JSONObject) json);
-            users.add(user);
+            users.add(json.toString());
         }
         return users;
     }
@@ -97,8 +96,8 @@ public class JsonReader {
         String username = userJson.getString("username");
         String password = userJson.getString("password");
         String about = userJson.getString("bio");
-        List<User> following = jsonToUsers(userJson.getJSONArray("following"));
-        List<User> followers = jsonToUsers(userJson.getJSONArray("followers"));
+        List<String> following = jsonToUsers(userJson.getJSONArray("following"));
+        List<String> followers = jsonToUsers(userJson.getJSONArray("followers"));
         List<Workout> workoutLog = jsonToWorkoutLog(userJson.getJSONArray("workoutLog"));
 
         User user = new User(username, password);

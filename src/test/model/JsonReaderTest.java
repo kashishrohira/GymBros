@@ -75,9 +75,8 @@ public class JsonReaderTest extends JsonTest {
             users.put("user1", testUser1);
             assertEquals("user1", testGymBros.getCurrentlyLoggedInUser().getUsername());
             assertEquals("abababab", testGymBros.getCurrentlyLoggedInUser().getPassword());
-            assertEquals(2, testGymBros.getCurrentlyLoggedInUser().getFollowing().size());
-            assertEquals("user2", testGymBros.getCurrentlyLoggedInUser().getFollowing().get(0).getUsername());
-            assertEquals("user3", testGymBros.getCurrentlyLoggedInUser().getFollowing().get(1).getUsername());
+            assertEquals(1, testGymBros.getCurrentlyLoggedInUser().getFollowing().size());
+            assertEquals("user2", testGymBros.getCurrentlyLoggedInUser().getFollowing().get(0));
             assertEquals(1, testGymBros.getCurrentlyLoggedInUser().getWorkoutLog().size());
 
             Workout w1 = testGymBros.getCurrentlyLoggedInUser().getWorkoutLog().get(0);
