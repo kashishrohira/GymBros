@@ -78,6 +78,16 @@ public class UserTest {
         assertEquals(testUser3.getUsername(), testUser1.getFollowers().get(1));
     }
 
+    @Test // adding a user that is already in the following list
+    public void testAddToFollowersAlreadyFollower() {
+        testUser1.addFollower(testUser3.getUsername());
+        testUser1.addFollower(testUser2.getUsername());
+        testUser1.addFollower(testUser2.getUsername());
+        assertEquals(2, testUser1.getFollowers().size());
+        assertEquals(testUser3.getUsername(), testUser1.getFollowers().get(0));
+        assertEquals(testUser2.getUsername(), testUser1.getFollowers().get(1));
+    }
+
     @Test
     void testRemoveFromFollowingSingleUser() {
         testUser1.addToFollowing(testUser2.getUsername());
@@ -93,6 +103,17 @@ public class UserTest {
         testUser1.addToFollowing(testUser3.getUsername());
         testUser1.removeFromFollowing(testUser2.getUsername());
         testUser1.removeFromFollowing(testUser3.getUsername());
+        assertEquals(0, testUser1.getFollowing().size());
+        assertTrue(testUser1.getFollowing().isEmpty());
+    }
+
+    @Test
+    void testRemoveFromFollowingNotFollowing() {
+        testUser1.addToFollowing(testUser2.getUsername());
+        testUser1.addToFollowing(testUser3.getUsername());
+        testUser1.removeFromFollowing(testUser2.getUsername());
+        testUser1.removeFromFollowing(testUser3.getUsername());
+        testUser1.removeFromFollowing(testUser2.getUsername());
         assertEquals(0, testUser1.getFollowing().size());
         assertTrue(testUser1.getFollowing().isEmpty());
     }
@@ -114,6 +135,15 @@ public class UserTest {
         testUser1.removeFollower(testUser3.getUsername());
         assertEquals(0, testUser1.getFollowers().size());
         assertTrue(testUser1.getFollowers().isEmpty());
+    }
+
+    @Test // remove multiple followers
+    void testRemoveFollowerNotFollower() {
+        testUser1.addFollower(testUser2.getUsername());
+        testUser1.removeFollower(testUser3.getUsername());
+        assertEquals(1, testUser1.getFollowers().size());
+        assertEquals(testUser2.getUsername(), testUser1.getFollowers().get(0));
+        assertFalse(testUser1.getFollowers().isEmpty());
     }
 
     @Test
