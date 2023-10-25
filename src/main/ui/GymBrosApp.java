@@ -313,6 +313,16 @@ public class GymBrosApp {
         if (gymBros.doesUserExist(follow)) {
             String following = follow;
             currentlyLoggedInUser.addToFollowing(following);
+            User u = gymBros.getUserWithUsername(following);
+            if (u.getFollowers().isEmpty()) {
+                System.out.println("You are now following " + following);
+                u.addFollower(currentlyLoggedInUser.getUsername());
+            } else if (!u.getFollowers().contains(currentlyLoggedInUser)) {
+                System.out.println("You are now following " + following);
+                u.addFollower(currentlyLoggedInUser.getUsername());
+            } else {
+                System.out.println("You are already following " + following);
+            }
         } else {
             System.out.println("User does not exist! Please enter a valid username");
             followUser();
