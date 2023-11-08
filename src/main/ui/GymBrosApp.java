@@ -7,6 +7,7 @@ import model.Workout;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,7 +17,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-public class GymBrosApp {
+public class GymBrosApp extends JFrame {
+    private static final int WIDTH = 1000;
+    private static final int HEIGHT = 1200;
+    private JDesktopPane desktop;
+    private JInternalFrame controlPanel;
+
     // register/login commands
     public static final String LOGIN_COMMAND = "/login";
     public static final String REGISTER_COMMAND = "/register";
@@ -33,7 +39,6 @@ public class GymBrosApp {
     public static final String EDIT_PROFILE_COMMAND = "/edit";
     public static final String FOLLOW_USER_COMMAND = "/follow";
     public static final String SELF_PROFILE_COMMAND = "me";
-    public static final String VIEW_USER_POSTS = "/userposts";
 
     // other
     public static final String EXIT_COMMAND = "/exit";
@@ -48,7 +53,6 @@ public class GymBrosApp {
     private Scanner input;
     private HashMap<String, User> usernameUser;
     private HashMap<String, String> usernamePassword;
-    private String userInput;
     private GymBros gymBros;
     private JsonWriter writer;
     private JsonReader reader;
@@ -61,6 +65,7 @@ public class GymBrosApp {
         loggedIn = false;
         usernameUser = new HashMap<>();
         input = new Scanner(System.in);
+        input.useDelimiter("\n");
         currentlyLoggedInUser = null;
         gymBros = new GymBros();
         writer = new JsonWriter(jsonUser);
@@ -74,7 +79,17 @@ public class GymBrosApp {
         boolean keepGoing1 = true;
         boolean keepGoing = true;
         String command = null;
+        String load = null;
 
+        boolean loaded = false;
+        while (loaded == false) {
+            System.out.println("Select " + LOAD_ACCOUNT + " to load data from your account");
+            load = input.next();
+            if (load.equals(LOAD_ACCOUNT)) {
+                loaded = true;
+                loadAccount();
+            }
+        }
 
         while (loggedIn == false) {
             displayLoginMenu();
@@ -146,6 +161,7 @@ public class GymBrosApp {
     // MODIFIES: this
     // EFFECTS: logs the user into their account if username exists and password matches
     public void logIntoAccount() {
+        System.out.println(gymBros.getNumUsers());
         System.out.println("Please enter your username");
         String username = input.next();
         System.out.println("Please enter your password");
@@ -173,7 +189,7 @@ public class GymBrosApp {
 
         try {
             gymBros = reader.read();
-            System.out.println("Loaded " + currentlyLoggedInUser.getUsername() + " from " + jsonUser);
+            System.out.println("Loaded " + " from " + jsonUser);
         } catch (IOException io) {
             System.out.println("Unable to read from file: " + jsonUser);
         }
@@ -198,8 +214,7 @@ public class GymBrosApp {
         System.out.println("Select  " + TRACKER_COMMAND + " to go into your workout history");
         System.out.println("Select " + FOLLOW_USER_COMMAND + " to follow another user");
         System.out.println("Select " + SELF_PROFILE_COMMAND + " to view your profile");
-        System.out.println("Select " + SAVE_ACCOUNT + " to log out of your account");
-        System.out.println("Select " + LOAD_ACCOUNT + " to load data from your account");
+        System.out.println("Select " + SAVE_ACCOUNT + " to save data to your account");
         System.out.println("Select " + LOGOUT_COMMAND + " to log out of your account");
     }
 
@@ -215,8 +230,6 @@ public class GymBrosApp {
             viewProfile();
         } else if (command.equals(SAVE_ACCOUNT)) {
             saveAccount();
-        } else if (command.equals(LOAD_ACCOUNT)) {
-            loadAccount();
         } else if (command.equals(LOGOUT_COMMAND)) {
             gymBros.logOut();
             System.out.println("You have been successfully logged out!");

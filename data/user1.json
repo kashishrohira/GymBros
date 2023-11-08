@@ -1,22 +1,45 @@
 {
     "loggedIn": false,
-    "user": "null",
+    "user": {
+        "password": "uuuuuuuu",
+        "followers": [],
+        "workoutLog": [],
+        "following": [],
+        "bio": "default bio",
+        "username": "kkk"
+    },
     "users": [
         {
             "password": "abababab",
-            "followers": ["kash"],
+            "followers": [],
             "workoutLog": [],
-            "following": ["kash"],
+            "following": [],
             "bio": "default bio",
             "username": "kashish"
         },
         {
-            "password": "12121212",
-            "followers": ["kashish"],
+            "password": "yayayayay",
+            "followers": [],
             "workoutLog": [],
-            "following": ["kashish"],
+            "following": [],
             "bio": "default bio",
             "username": "kash"
+        },
+        {
+            "password": "uuuuuuuu",
+            "followers": [],
+            "workoutLog": [],
+            "following": [],
+            "bio": "default bio",
+            "username": "kkk"
+        },
+        {
+            "password": "asdfghjk",
+            "followers": [],
+            "workoutLog": [],
+            "following": [],
+            "bio": "default bio",
+            "username": "jim"
         }
     ]
 }

@@ -4,10 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class GymBros implements Writable {
 
@@ -63,13 +60,13 @@ public class GymBros implements Writable {
 
     // EFFECTS: returns true if username exists on the app, false otherwise
     public Boolean checkUsernameWhenLoggingIn(String username) {
-        return (usernamePassword.containsKey(username));
+        return (usernameUser.containsKey(username));
     }
 
     // REQUIRES: username should exist in the app
     // EFFECTS: returns true if password matches the username, false otherwise
     public Boolean checkPasswordWhenLoggingIn(String username, String password) {
-        return (password.equals(usernamePassword.get(username)));
+        return (password.equals(usernameUser.get(username).getPassword()));
     }
 
     // EFFECTS: returns true if the username is at least one character and less than or
@@ -101,6 +98,9 @@ public class GymBros implements Writable {
 
     // EFFECTS: returns the number of users on the app
     public int getNumUsers() {
+        for (Map.Entry<String, User> entry : usernameUser.entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue().toString());
+        }
         return usernameUser.size();
     }
 

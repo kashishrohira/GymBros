@@ -55,6 +55,7 @@ public class JsonReader {
         Boolean loggedIn = jsonObject.getBoolean("loggedIn");
         User currentlyActiveUser = null;
         HashMap<String, User> users = jsonToUsernameUsers(jsonObject.getJSONArray("users"));
+
         if (loggedIn) {
             currentlyActiveUser = jsonToUser(jsonObject.getJSONObject("user"));
             users.put(currentlyActiveUser.getUsername(),currentlyActiveUser);
