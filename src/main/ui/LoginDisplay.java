@@ -29,6 +29,7 @@ public class LoginDisplay extends UsernamePasswordInput {
                 boolean authenticated = gymBros.authenticateUser(username, password);
 
                 if (authenticated) {
+                    gymBros.setCurrentlyLoggedInUser(gymBros.getUserWithUsername(username));
                     JOptionPane.showMessageDialog(LoginDisplay.this, "Successfully logged in!");
                 } else {
                     JOptionPane.showMessageDialog(LoginDisplay.this,
