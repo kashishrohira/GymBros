@@ -159,4 +159,23 @@ public class GymBrosTest {
         assertNull(testGymBros.getCurrentlyLoggedInUser());
     }
 
+    @Test
+    void testAuthenticateUsernameDoesNotExist() {
+        assertFalse(testGymBros.authenticateUser("kash", "abababab"));
+    }
+
+    @Test
+    void testAuthenticatePasswordDoesNotMatch() {
+        User user = new User("kash", "123123123");
+        testGymBros.createNewUser(user);
+        assertFalse(testGymBros.authenticateUser("kash", "abababab"));
+    }
+
+    @Test
+    void testAuthenticateSuccess() {
+        User user = new User("kash", "123123123");
+        testGymBros.createNewUser(user);
+        assertTrue(testGymBros.authenticateUser("kash", "123123123"));
+    }
+
 }

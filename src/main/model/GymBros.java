@@ -104,14 +104,47 @@ public class GymBros implements Writable {
         return usernameUser.size();
     }
 
-    // NEW STARTS HERE !!!!!
-
-
     // MODIFIES: this
     // EFFECTS: logs the user out of the app
     public void logOut() {
         loggedIn = false;
         currentlyLoggedInUser = null;
+    }
+
+
+    // REQUIRES: given user is registered on the app
+    // MODIFIES: this
+    // EFFECTS: sets the current user to the given user
+    public void setCurrentlyLoggedInUser(User currentlyLoggedInUser) {
+        this.currentlyLoggedInUser = currentlyLoggedInUser;
+
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the loggedIn status of the user to the given boolean
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
+
+    // REQUIRES: map contains registered users on the app
+    // MODIFIES: this
+    // EFFECTS: sets the map of usernames and users and users to the given map
+    public void setUsernameUsers(HashMap<String, User> usernameUsers) {
+        this.usernameUser = usernameUsers;
+    }
+
+
+    // EFFECTS: returns true if username and password match an existing user on the app, false otherwise
+    public boolean authenticateUser(String username, String password) {
+        if (checkUsernameWhenLoggingIn(username) == false) {
+            return false;
+        } else if (checkPasswordWhenLoggingIn(username, password) == false) {
+            return false;
+        } else {
+            loggedIn = true;
+            setCurrentlyLoggedInUser(getUserWithUsername(username));
+            return true;
+        }
     }
 
     @Override
@@ -139,29 +172,6 @@ public class GymBros implements Writable {
 
         return users;
     }
-
-
-    // REQUIRES: given user is registered on the app
-    // MODIFIES: this
-    // EFFECTS: sets the current user to the given user
-    public void setCurrentlyLoggedInUser(User currentlyLoggedInUser) {
-        this.currentlyLoggedInUser = currentlyLoggedInUser;
-
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets the loggedIn status of the user to the given boolean
-    public void setLoggedIn(boolean loggedIn) {
-        this.loggedIn = loggedIn;
-    }
-
-    // REQUIRES: map contains registered users on the app
-    // MODIFIES: this
-    // EFFECTS: sets the map of usernames and users and users to the given map
-    public void setUsernameUsers(HashMap<String, User> usernameUsers) {
-        this.usernameUser = usernameUsers;
-    }
-
 
 }
 

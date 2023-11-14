@@ -8,7 +8,13 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
-import java.io.File;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -58,6 +64,14 @@ public class GymBrosApp extends JFrame {
     private JsonReader reader;
     private String jsonUser = "./data/user1.json";
 
+    // GUI
+    private JLabel logoLabel;
+    private JButton loadButton;
+    private JButton newButton;
+    private JFrame popUpFrame;
+    private JLabel tapLabel;
+    private JTextArea outputTextArea;
+
     // EFFECTS: creates a new instance of the GymBros application, with loggedIn being false,
     //          the usernameUser as empty hashmap, instantiates the Scanner to take in user input
     //          and runs the GymBros application
@@ -76,15 +90,12 @@ public class GymBrosApp extends JFrame {
 
     // EFFECTS: processes user input
     private void runGymBros() {
-        boolean keepGoing1 = true;
         boolean keepGoing = true;
-        String command = null;
-        String load = null;
 
         boolean loaded = false;
         while (loaded == false) {
-            System.out.println("Select " + LOAD_ACCOUNT + " to load data from your account");
-            load = input.next();
+            showPopUpLoad();
+            String load = input.next();
             if (load.equals(LOAD_ACCOUNT)) {
                 loaded = true;
                 loadAccount();
@@ -93,21 +104,125 @@ public class GymBrosApp extends JFrame {
 
         while (loggedIn == false) {
             displayLoginMenu();
-            command = input.next();
-            command = command.toLowerCase();
+            String command = input.next().toLowerCase();
             processLoginCommand(command);
         }
 
         while (keepGoing) {
             displayNextMenu();
-            command = input.next();
-            command = command.toLowerCase();
+            String command = input.next().toLowerCase();
             if (command.equals(EXIT_COMMAND)) {
                 keepGoing = false;
             } else {
                 processNextCommand(command);
             }
         }
+    }
+
+    public void showPopUpLoad() {
+        popUpFrame = new JFrame("Pop-up Window");
+        loadButton = new JButton("Load from file");
+        newButton = new JButton("Create new GymBros");
+
+        // Add action listener for the Load button in the pop-up window
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadButton.setVisible(false);
+                newButton.setVisible(false);
+                showLogoDialog();
+                loadAccount();
+            }
+        });
+
+        newButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Create a new instance of the app (you need to implement this logic)
+                createNewInstance();
+            }
+        });
+
+        popUpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only the pop-up window
+        popUpFrame.setLayout(new BorderLayout());
+
+        JPanel contentPanel = new JPanel(new BorderLayout());  // FlowLayout for logo and load button
+        logoLabel = new JLabel();
+        contentPanel.add(logoLabel, BorderLayout.CENTER);
+
+        popUpFrame.add(contentPanel, BorderLayout.CENTER);
+
+        // Initialize the tapLabel with "Tap anywhere to begin" text
+        tapLabel = new JLabel("Tap anywhere to begin");
+        tapLabel.setForeground(Color.WHITE);
+        tapLabel.setBackground(Color.BLACK);
+        tapLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        tapLabel.setVerticalAlignment(SwingConstants.BOTTOM);
+        tapLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        tapLabel.setOpaque(true); // Make the label transparent
+        tapLabel.setVisible(false);  // Initially set to invisible
+        popUpFrame.add(tapLabel, BorderLayout.SOUTH);
+
+
+        popUpFrame.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                displayLoginMenu();
+            }
+        });
+
+        // adding load button
+        JPanel loadButtonPanel = new JPanel();
+        loadButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        loadButtonPanel.setBorder(BorderFactory.createEmptyBorder(150, 0, 0, 0));
+        loadButtonPanel.add(loadButton);
+        popUpFrame.add(loadButtonPanel, BorderLayout.NORTH);
+
+        // adding new button
+        JPanel newButtonPanel = new JPanel();
+        newButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        newButtonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 150, 0));
+        newButtonPanel.add(newButton);
+        popUpFrame.add(newButtonPanel, BorderLayout.SOUTH);
+
+        popUpFrame.setSize(500, 500);
+        popUpFrame.setVisible(true);
+    }
+
+    public void showLogoDialog() {
+        ImageIcon icon = new ImageIcon("gymbros-logo.jpeg");
+        Image img = icon.getImage();
+        Image scaled = img.getScaledInstance(popUpFrame.getWidth(), popUpFrame.getHeight(), Image.SCALE_SMOOTH);
+        icon = new ImageIcon(scaled);
+        logoLabel.setIcon(icon);
+
+        // disable load button
+        loadButton.setEnabled(false);
+
+        // remove load button
+        Container contentPane = popUpFrame.getContentPane();
+        contentPane.remove(loadButton);
+        contentPane.remove(newButton);
+        popUpFrame.setLayout(null);
+
+        // creating a new content panel with flow layout
+        JPanel contentPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        contentPanel.add(logoLabel);
+        contentPanel.add(tapLabel);
+
+        popUpFrame.setContentPane(contentPanel);
+
+        // show tap label
+        tapLabel.setVisible(true);
+
+        // repaint frame
+        popUpFrame.revalidate();
+        popUpFrame.repaint();
+
+    }
+
+    public void createNewInstance() { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        gymBros = new GymBros();
     }
 
     // EFFECTS: processes user command
@@ -123,10 +238,10 @@ public class GymBrosApp extends JFrame {
 
     // EFFECTS: displays registration/login menu options to the user
     public void displayLoginMenu() {
-        System.out.println("What do you want to do?");
-        System.out.println("Select " + EXIT_COMMAND + " to exit the app");
-        System.out.println("Select  " + REGISTER_COMMAND + " to register a new account");
-        System.out.println("Select " + LOGIN_COMMAND + " to log into an existing account");
+        LoginPage loginPage = new LoginPage(gymBros);
+        popUpFrame.setContentPane(loginPage);  // Set the content pane to the new loginPage
+        popUpFrame.revalidate();
+        popUpFrame.repaint();
     }
 
     // MODIFIES: this
@@ -189,9 +304,8 @@ public class GymBrosApp extends JFrame {
 
         try {
             gymBros = reader.read();
-            System.out.println("Loaded " + " from " + jsonUser);
         } catch (IOException io) {
-            System.out.println("Unable to read from file: " + jsonUser);
+            outputTextArea.append("Unable to read from file: " + jsonUser + "\n");
         }
     }
 
