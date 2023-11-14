@@ -1,7 +1,8 @@
-package ui;
+package ui.LoginRegistration;
 
 import model.GymBros;
 import model.User;
+import ui.UsernamePasswordInput;
 
 import javax.swing.*;
 import java.awt.*;

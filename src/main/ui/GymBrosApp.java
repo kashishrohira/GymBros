@@ -6,6 +6,7 @@ import model.User;
 import model.Workout;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import ui.LoginRegistration.LoginPage;
 
 import javax.swing.*;
 import java.awt.*;

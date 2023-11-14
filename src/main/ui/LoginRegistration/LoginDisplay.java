@@ -1,6 +1,9 @@
-package ui;
+package ui.LoginRegistration;
 
 import model.GymBros;
+import model.User;
+import ui.HomeFeed;
+import ui.UsernamePasswordInput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,6 +34,7 @@ public class LoginDisplay extends UsernamePasswordInput {
                 if (authenticated) {
                     gymBros.setCurrentlyLoggedInUser(gymBros.getUserWithUsername(username));
                     JOptionPane.showMessageDialog(LoginDisplay.this, "Successfully logged in!");
+                    showHomePage();
                 } else {
                     JOptionPane.showMessageDialog(LoginDisplay.this,
                             "Incorrect username or password. Try again.");
@@ -59,6 +63,15 @@ public class LoginDisplay extends UsernamePasswordInput {
         add(cancelButton);
     }
 
+    private void showHomePage() {
+        removeAll(); // Clear the content of the current panel
 
+        // Assuming you have a method to get the currently logged-in user
+        User loggedInUser = gymBros.getCurrentlyLoggedInUser();
+        HomeFeed homePage = new HomeFeed(loggedInUser);
 
+        add(homePage); // Add the home page to the current panel
+        revalidate();
+        repaint();
+    }
 }

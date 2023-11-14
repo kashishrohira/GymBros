@@ -1,4 +1,4 @@
-package ui;
+package ui.LoginRegistration;
 
 import model.GymBros;
 
