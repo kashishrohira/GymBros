@@ -1,4 +1,4 @@
-package ui.LoginRegistration;
+package ui.login;
 
 import model.GymBros;
 import model.User;

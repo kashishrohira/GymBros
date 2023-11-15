@@ -30,33 +30,10 @@ public class ProfilePage extends JPanel {
 
         setProfileLayout();
 
-        followingButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showFollowingList();
-            }
-        });
-
-        followersButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showFollowersList();
-            }
-        });
-
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                backToHomePage();
-            }
-        });
-
-        editBioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                editBio();
-            }
-        });
+        addActionListenerFollowingButton();
+        addActionListenerFollowersButton();
+        addActionListenerBackButton();
+        addActionListenerBioButton();
     }
 
     public void init(User user) {
@@ -66,6 +43,43 @@ public class ProfilePage extends JPanel {
         followersButton = new JButton("Followers");
         backButton = new JButton("Back to Home");
         editBioButton = new JButton("Click here to edit your bio!");
+    }
+
+    public void addActionListenerFollowingButton() {
+        followingButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showFollowingList();
+            }
+        });
+
+    }
+
+    public void addActionListenerBackButton() {
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                backToHomePage();
+            }
+        });
+    }
+
+    public void addActionListenerFollowersButton() {
+        followersButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showFollowersList();
+            }
+        });
+    }
+
+    public void addActionListenerBioButton() {
+        editBioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editBio();
+            }
+        });
     }
 
     // MODIFIES: this

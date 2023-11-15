@@ -1,4 +1,4 @@
-package ui.LoginRegistration;
+package ui.login;
 
 import model.GymBros;
 import model.User;
@@ -23,26 +23,7 @@ public class LoginDisplay extends UsernamePasswordInput {
         cancelButton = new JButton("Cancel");
 
 
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                String username = usernameField.getText();
-                String password = passwordField.getText();
-                boolean authenticated = gymBros.authenticateUser(username, password);
-
-                if (authenticated) {
-                    gymBros.setCurrentlyLoggedInUser(gymBros.getUserWithUsername(username));
-                    JOptionPane.showMessageDialog(LoginDisplay.this, "Successfully logged in!");
-                    showHomePage();
-                } else {
-                    JOptionPane.showMessageDialog(LoginDisplay.this,
-                            "Incorrect username or password. Try again.");
-                    clearFields();
-                }
-
-            }
-        });
+        addActionListenerLoginButton();
 
         cancelButton.addActionListener(new ActionListener() {
             @Override
@@ -73,5 +54,28 @@ public class LoginDisplay extends UsernamePasswordInput {
         add(homePage); // Add the home page to the current panel
         revalidate();
         repaint();
+    }
+
+    public void addActionListenerLoginButton() {
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String username = usernameField.getText();
+                String password = passwordField.getText();
+                boolean authenticated = gymBros.authenticateUser(username, password);
+
+                if (authenticated) {
+                    gymBros.setCurrentlyLoggedInUser(gymBros.getUserWithUsername(username));
+                    JOptionPane.showMessageDialog(LoginDisplay.this, "Successfully logged in!");
+                    showHomePage();
+                } else {
+                    JOptionPane.showMessageDialog(LoginDisplay.this,
+                            "Incorrect username or password. Try again.");
+                    clearFields();
+                }
+
+            }
+        });
     }
 }

@@ -2,13 +2,12 @@ package ui;
 
 import model.GymBros;
 import model.User;
-import ui.LoginRegistration.LoginPage;
+import ui.login.LoginPage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 
 public class HomeFeed extends JPanel {
     private JLabel welcomeLabel;
@@ -31,40 +30,12 @@ public class HomeFeed extends JPanel {
 
         setHomeLayout();
 
-        profileButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showProfilePage();
-            }
-        });
+        addActionListenerProfileButton();
+        addActionListenerWorkoutLogButton();
+        addActionListenerAddWorkoutButton();
+        addActionListenerFollowUserButton();
+        addActionListenerLogoutButton();
 
-        workoutLogButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showWorkoutLogPage();
-            }
-        });
-
-        addWorkoutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showAddWorkoutPage();
-            }
-        });
-
-        followUserButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showFollowUsersPage();
-            }
-        });
-
-        logoutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                handleLogout(e);
-            }
-        });
     }
 
     public void initButtons(User user) {
@@ -96,6 +67,51 @@ public class HomeFeed extends JPanel {
         add(followUserButton);
         add(Box.createVerticalStrut(10));
         add(logoutButton);
+    }
+
+    public void addActionListenerProfileButton() {
+        profileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showProfilePage();
+            }
+        });
+    }
+
+    public void addActionListenerWorkoutLogButton() {
+        workoutLogButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showWorkoutLogPage();
+            }
+        });
+    }
+
+    public void addActionListenerAddWorkoutButton() {
+        addWorkoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showAddWorkoutPage();
+            }
+        });
+    }
+
+    public void addActionListenerFollowUserButton() {
+        followUserButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showFollowUsersPage();
+            }
+        });
+    }
+
+    public void addActionListenerLogoutButton() {
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleLogout(e);
+            }
+        });
     }
 
     public void showWorkoutLogPage() {
