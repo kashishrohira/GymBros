@@ -98,8 +98,7 @@ public class AddWorkoutPage extends JPanel {
                 currentUser.addWorkoutToLog(workout);
             }
             JOptionPane.showMessageDialog(this,
-                    "Exercise logged successfully!",
-                    "Log Exercise", JOptionPane.INFORMATION_MESSAGE);
+                    "Exercise logged successfully!", "Log Exercise", JOptionPane.INFORMATION_MESSAGE);
             exerciseNameField.setText("");
             repsField.setText("");
         } else {

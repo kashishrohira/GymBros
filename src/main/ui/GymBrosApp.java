@@ -109,38 +109,24 @@ public class GymBrosApp extends JFrame {
             processLoginCommand(command);
         }
 
-        while (keepGoing) {
-            displayNextMenu();
-            String command = input.next().toLowerCase();
-            if (command.equals(EXIT_COMMAND)) {
-                keepGoing = false;
-            } else {
-                processNextCommand(command);
-            }
-        }
+//        while (keepGoing) {
+//            displayNextMenu();
+//            String command = input.next().toLowerCase();
+//            if (command.equals(EXIT_COMMAND)) {
+//                keepGoing = false;
+//            } else {
+//                processNextCommand(command);
+//            }
+//        }
     }
 
     public void showPopUpLoad() {
-        popUpFrame = new JFrame("Pop-up Window");
-        loadButton = new JButton("Load from file");
-        newButton = new JButton("Create new GymBros");
-
-
-        // Add action listener for the Load button in the pop-up window
-        loadButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                loadButton.setVisible(false);
-                newButton.setVisible(false);
-                showLogoDialog();
-                loadAccount();
-            }
-        });
+        initButtons();
+        addActionListenerLoadButton();
 
         newButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Create a new instance of the app (you need to implement this logic)
                 createNewInstance();
             }
         });
@@ -154,6 +140,38 @@ public class GymBrosApp extends JFrame {
 
         popUpFrame.add(contentPanel, BorderLayout.CENTER);
 
+        initTapLabel();
+
+        popUpFrame.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                displayLoginMenu();
+            }
+        });
+
+        setPopUpLayout();
+    }
+
+    public void initButtons() {
+        popUpFrame = new JFrame("Pop-up Window");
+        loadButton = new JButton("Load from file");
+        newButton = new JButton("Create new GymBros");
+    }
+
+    public void addActionListenerLoadButton() {
+        // Add action listener for the Load button in the pop-up window
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadButton.setVisible(false);
+                newButton.setVisible(false);
+                showLogoDialog();
+                loadAccount();
+            }
+        });
+    }
+
+    public void initTapLabel() {
         // Initialize the tapLabel with "Tap anywhere to begin" text
         tapLabel = new JLabel("Tap anywhere to begin");
         tapLabel.setForeground(Color.WHITE);
@@ -164,16 +182,9 @@ public class GymBrosApp extends JFrame {
         tapLabel.setOpaque(true); // Make the label transparent
         tapLabel.setVisible(false);  // Initially set to invisible
         popUpFrame.add(tapLabel, BorderLayout.SOUTH);
+    }
 
-
-        popUpFrame.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                displayLoginMenu();
-            }
-        });
-
-        // adding load button
+    public void setPopUpLayout() {
         JPanel loadButtonPanel = new JPanel();
         loadButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         loadButtonPanel.setBorder(BorderFactory.createEmptyBorder(150, 0, 0, 0));
