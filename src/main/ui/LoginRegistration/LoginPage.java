@@ -11,25 +11,15 @@ public class LoginPage extends JPanel {
     private CardLayout cardLayout;
     private JPanel cardPanel;
     private GymBros gymBros;
+    private JPanel buttonPanel;
+    private JButton loginButton;
+    private JButton registerButton;
+    private JButton exitButton;
 
     public LoginPage(GymBros gymbros) {
         this.gymBros = gymbros;
-        cardLayout = new CardLayout();
-        cardPanel = new JPanel(cardLayout);
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.Y_AXIS));
-        buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        JButton loginButton = new JButton("Login");
-        JButton registerButton = new JButton("Register");
-        JButton exitButton = new JButton("Exit");
-
-        Dimension buttonSize = new Dimension(500, 70);
-        loginButton.setPreferredSize(buttonSize);
-        registerButton.setPreferredSize(buttonSize);
-        exitButton.setPreferredSize(buttonSize);
-
+        init();
 
         loginButton.addActionListener(new ActionListener() {
             @Override
@@ -54,6 +44,31 @@ public class LoginPage extends JPanel {
             }
         });
 
+        setLoginPageLayout();
+
+    }
+
+    public void init() {
+        cardLayout = new CardLayout();
+        cardPanel = new JPanel(cardLayout);
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.Y_AXIS));
+        buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        loginButton = new JButton("Login");
+        registerButton = new JButton("Register");
+        exitButton = new JButton("Exit");
+
+        Dimension buttonSize = new Dimension(500, 70);
+        loginButton.setPreferredSize(buttonSize);
+        registerButton.setPreferredSize(buttonSize);
+        exitButton.setPreferredSize(buttonSize);
+    }
+
+    public void setLoginPageLayout() {
+        setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+//        setBackground(Color.BLACK);
+
         buttonPanel.add(Box.createVerticalStrut(50));
         buttonPanel.add(Box.createHorizontalStrut(120));
         buttonPanel.add(loginButton);
@@ -68,9 +83,14 @@ public class LoginPage extends JPanel {
         cardPanel.add(createLoginCard(), "loginCard");
         cardPanel.add(createRegisterCard(), "registerCard");
 
-        setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0)); // center align
         add(buttonPanel, BorderLayout.CENTER);
         add(cardPanel, BorderLayout.CENTER);
+
+        setOpaque(true);
+        buttonPanel.setOpaque(true);
+        cardPanel.setOpaque(true);
+
+
     }
 
     private JPanel createLoginCard() {

@@ -46,4 +46,11 @@ combine my love for fitness with technology and community-building.
 - As a user, I want to be able to like and comment under posts
 - As a user, when I select the exit option from the application menu, I want to be reminded to save my workout log to 
  file and have the option to do so or not
-- As a user, I want to be given the option to load my workout log from file
+
+
+## Instructions for grader
+- You can generate the first required action related to adding a workout to your workout log by clicking the "Add a new workout" button
+- You can generate the second required action related to adding a workout to your workout log by ...
+- You can locate my visual component at the start of the application when you click "Load from file"
+- You can save the state of my application by clicking on logout and then selecting yes when prompted to save to file.
+- You can reload the state of my application by clicking "Load from file" when starting the app again and logging into your account

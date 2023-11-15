@@ -1,6 +1,8 @@
 package ui;
 
+import model.GymBros;
 import model.User;
+import ui.LoginRegistration.LoginPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,9 +18,13 @@ public class HomeFeed extends JPanel {
     private JButton followUserButton;
 
     private User currentUser;
+    private GymBros gymBros;
+    private LoginPage loginPage;
 
-    public HomeFeed(User user) {
+    public HomeFeed(User user, GymBros gymBros, LoginPage loginPage) {
         this.currentUser = user;
+        this.gymBros = gymBros;
+        this.loginPage = loginPage;
 
         initButtons(user);
 
@@ -56,14 +62,14 @@ public class HomeFeed extends JPanel {
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Handle logout button click
-                // You can perform logout actions, such as switching to the login page
+                handleLogout(e);
             }
         });
     }
 
     public void initButtons(User user) {
-        welcomeLabel = new JLabel("Welcome, " + user.getUsername());
+        welcomeLabel = new JLabel("Welcome, " + user.getUsername()
+                + ". You've taken the first step for a healthier, happier you!");
         profileButton = new JButton("My Profile");
         workoutLogButton = new JButton("My Workout Log");
         addWorkoutButton = new JButton("Add a new workout");
@@ -75,6 +81,7 @@ public class HomeFeed extends JPanel {
     // EFFECTS: sets the layout of the home feed with box layout
     public void setHomeLayout() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+//        setBackground(Color.BLACK);  // Set background color to black
         setAlignmentX(Component.CENTER_ALIGNMENT);
 
         add(Box.createVerticalStrut(40));
@@ -121,4 +128,39 @@ public class HomeFeed extends JPanel {
         revalidate();
         repaint();
     }
+
+    public void handleLogout(ActionEvent e) {
+        int option = JOptionPane.showConfirmDialog(HomeFeed.this,
+                "Do you want to save your data?", "Logout",
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (option == JOptionPane.YES_OPTION) {
+//            GymBrosApp.saveAccount(currentUser);
+        } else if (option == JOptionPane.NO_OPTION) {
+            // do nothing
+        } else if (option == JOptionPane.CANCEL_OPTION || option == JOptionPane.CLOSED_OPTION) {
+            return;
+        }
+
+        logOutUser();
+    }
+
+    public void logOutUser() {
+        gymBros.logOut();
+        showLoginPage();
+    }
+
+    public void showLoginPage() {
+        removeAll();
+
+        // Add the components for the home page
+        loginPage.setLoginPageLayout();
+
+        // Refresh the panel
+        revalidate();
+        repaint();
+
+    }
+
+
 }

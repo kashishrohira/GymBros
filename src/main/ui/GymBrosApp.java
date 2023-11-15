@@ -125,6 +125,7 @@ public class GymBrosApp extends JFrame {
         loadButton = new JButton("Load from file");
         newButton = new JButton("Create new GymBros");
 
+
         // Add action listener for the Load button in the pop-up window
         loadButton.addActionListener(new ActionListener() {
             @Override
@@ -311,7 +312,7 @@ public class GymBrosApp extends JFrame {
     }
 
     // EFFECTS: saves the account to file
-    private void saveAccount() {
+    public void saveAccount() {
         try {
             writer.open();
             writer.writeGymBros(gymBros);

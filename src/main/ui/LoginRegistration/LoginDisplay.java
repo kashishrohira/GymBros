@@ -68,7 +68,7 @@ public class LoginDisplay extends UsernamePasswordInput {
 
         // Assuming you have a method to get the currently logged-in user
         User loggedInUser = gymBros.getCurrentlyLoggedInUser();
-        HomeFeed homePage = new HomeFeed(loggedInUser);
+        HomeFeed homePage = new HomeFeed(loggedInUser, gymBros, loginPage);
 
         add(homePage); // Add the home page to the current panel
         revalidate();

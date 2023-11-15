@@ -21,15 +21,6 @@ public class WorkoutLog extends JPanel {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        List<Workout> workoutLog = currentUser.getWorkoutLog();
-        if (workoutLog.isEmpty()) {
-            showEmptyWorkoutLog();
-        } else {
-            for (Workout w: workoutLog) {
-                displayWorkoutEntry(w);
-            }
-        }
-
         backButton = new JButton("Back to Home");
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -37,7 +28,16 @@ public class WorkoutLog extends JPanel {
                 backToHomePage();
             }
         });
-        add(backButton);
+
+        List<Workout> workoutLog = currentUser.getWorkoutLog();
+        if (workoutLog.isEmpty()) {
+            showEmptyWorkoutLog();
+        } else {
+            for (Workout w: workoutLog) {
+                displayWorkoutEntry(w);
+            }
+            add(backButton);
+        }
 
     }
 
