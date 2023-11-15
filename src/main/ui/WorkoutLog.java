@@ -17,6 +17,8 @@ public class WorkoutLog extends JPanel {
     private JComboBox<String> dateComboBox;
     private List<Workout> workoutLog;
 
+    // REQUIRES: user and homeFeed are not null
+    // EFFECTS: constructs a WorkoutLog page with given user and homeFeed
     public WorkoutLog(User user, HomeFeed homeFeed) {
         this.currentUser = user;
         this.homeFeed = homeFeed;
@@ -44,6 +46,8 @@ public class WorkoutLog extends JPanel {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes layout components
     public void init() {
         dateComboBox = new JComboBox<>();
         populateDateComboBox();
@@ -52,6 +56,8 @@ public class WorkoutLog extends JPanel {
         add(backButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: if workout log is not empty then displays each workout entry, otherwise shows empty workout dialog
     public void handleWorkoutLog(List<Workout> workoutLog) {
         if (workoutLog.isEmpty()) {
             showEmptyWorkoutLog();
@@ -62,12 +68,16 @@ public class WorkoutLog extends JPanel {
         }
     }
 
+    // MODIFIES: dateComboBox
+    // EFFECTS: populate the combo box with dates from the user's workout log
     private void populateDateComboBox() {
         for (Workout w: workoutLog) {
             dateComboBox.addItem(w.getDate());
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays the workout log for selected date
     private void displaySelectedWorkout() {
         String selectedDate = (String) dateComboBox.getSelectedItem();
         removeAll();
@@ -86,6 +96,8 @@ public class WorkoutLog extends JPanel {
         repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays workout entry for given workout including name and reps for each exercise
     public void displayWorkoutEntry(Workout workout) {
         JPanel workoutPanel = new JPanel();
         workoutPanel.setLayout(new BoxLayout(workoutPanel, BoxLayout.Y_AXIS));
@@ -102,6 +114,7 @@ public class WorkoutLog extends JPanel {
         add(workoutPanel);
     }
 
+    // EFFECTS: displays an information dialog indicating that workout log is empty
     public void showEmptyWorkoutLog() {
         int option = JOptionPane.showOptionDialog(this,
                 "Your workout log is empty. This is the beginning of your fitness journey <3",
@@ -112,6 +125,8 @@ public class WorkoutLog extends JPanel {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets current page to homeFeed layout
     public void backToHomePage() {
         removeAll();
 

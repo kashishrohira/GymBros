@@ -21,6 +21,8 @@ public class AddWorkoutPage extends JPanel {
     private JButton backButton;
     private JLabel dateLabel;
 
+    // REQUIRES: user and homeFeed are not null
+    // EFFECTS: constructs AddWorkoutPage with the given user and homeFeed
     public AddWorkoutPage(User user, HomeFeed homeFeed) {
         this.currentUser = user;
         this.homeFeed = homeFeed;
@@ -46,6 +48,7 @@ public class AddWorkoutPage extends JPanel {
         setAddWorkoutLayout();
     }
 
+    // EFFECTS: initializes the label, text fields and buttons
     public void init() {
         dateLabel = new JLabel("Date: " + getCurrentDate());
         exerciseNameField = new JTextField("Exercise Name");
@@ -55,6 +58,7 @@ public class AddWorkoutPage extends JPanel {
         backButton = new JButton("Back to Home");
     }
 
+    // EFFECTS: returns the local date formatted as "MMMM dd, YYYY"
     public String getCurrentDate() {
         String date;
         DateTimeFormatter dtf;
@@ -64,6 +68,8 @@ public class AddWorkoutPage extends JPanel {
         return date;
     }
 
+    // MODIFIES: this
+    // effects: adds components to the layout including label, text fields and buttons
     public void setAddWorkoutLayout() {
         add(Box.createVerticalStrut(20));
         add(dateLabel);
@@ -79,6 +85,8 @@ public class AddWorkoutPage extends JPanel {
         add(backButton);
     }
 
+    // MODIFIES: currentUser
+    // EFFECTS: validates input and logs the exercise to the workout log of the current user
     public void logExercise() {
         String exerciseName = exerciseNameField.getText();
         String repsText = repsField.getText();
@@ -108,6 +116,8 @@ public class AddWorkoutPage extends JPanel {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the panel layout to homeFeed layout
     public void backToHomePage() {
         removeAll();
 

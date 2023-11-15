@@ -16,6 +16,8 @@ public class LoginPage extends JPanel {
     private JButton registerButton;
     private JButton exitButton;
 
+    // REQUIRES: gymBros is not null
+    // EFFECTS: constructs a loginPage with given gymBros
     public LoginPage(GymBros gymbros) {
         this.gymBros = gymbros;
 
@@ -48,6 +50,8 @@ public class LoginPage extends JPanel {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes layout components
     public void init() {
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
@@ -65,6 +69,8 @@ public class LoginPage extends JPanel {
         exitButton.setPreferredSize(buttonSize);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the layout of the loginPage
     public void setLoginPageLayout() {
         setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 //        setBackground(Color.BLACK);
@@ -89,22 +95,24 @@ public class LoginPage extends JPanel {
         setOpaque(true);
         buttonPanel.setOpaque(true);
         cardPanel.setOpaque(true);
-
-
     }
 
+    // EFFECTS: creates a new JPanel for loginCard
     private JPanel createLoginCard() {
         JPanel loginCard = new JPanel();
         // Add components to the login card as needed
         return loginCard;
     }
 
+    // EFFECTS: creates a new JPanel for RegisterCard
     private JPanel createRegisterCard() {
         JPanel registerCard = new JPanel();
         // Add components to the register card as needed
         return registerCard;
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates new loginDisplay with given gymBros and this and displays it
     public void showLoginDisplay(GymBros gymBros) {
         LoginDisplay loginDisplay = new LoginDisplay(gymBros, this);
 
@@ -115,6 +123,8 @@ public class LoginPage extends JPanel {
         repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates new RegisterDisplay with given gymBros and this and displays it
     public void showRegisterDisplay(GymBros gymbros) {
         RegisterDisplay registerDisplay = new RegisterDisplay(gymBros, this);
 
@@ -125,6 +135,8 @@ public class LoginPage extends JPanel {
         repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: shows the loginCard in the cardPanel
     public void showLoginPage() {
         cardLayout.show(cardPanel, "loginCard");
     }

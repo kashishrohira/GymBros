@@ -21,6 +21,8 @@ public class HomeFeed extends JPanel {
     private GymBros gymBros;
     private LoginPage loginPage;
 
+    // REQUIRES: user, gymBros and loginPage are not null
+    // EFFECTS: constructs a homeFeed with given user, gymBros and loginPage
     public HomeFeed(User user, GymBros gymBros, LoginPage loginPage) {
         this.currentUser = user;
         this.gymBros = gymBros;
@@ -38,6 +40,8 @@ public class HomeFeed extends JPanel {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the label and buttons
     public void initButtons(User user) {
         welcomeLabel = new JLabel("Welcome, " + user.getUsername()
                 + ". You've taken the first step for a healthier, happier you!");
@@ -69,6 +73,8 @@ public class HomeFeed extends JPanel {
         add(logoutButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up action listener for ProfileButton
     public void addActionListenerProfileButton() {
         profileButton.addActionListener(new ActionListener() {
             @Override
@@ -78,6 +84,8 @@ public class HomeFeed extends JPanel {
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up action listener for WorkoutLogButton
     public void addActionListenerWorkoutLogButton() {
         workoutLogButton.addActionListener(new ActionListener() {
             @Override
@@ -87,6 +95,8 @@ public class HomeFeed extends JPanel {
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up action listener for AddWorkoutButton
     public void addActionListenerAddWorkoutButton() {
         addWorkoutButton.addActionListener(new ActionListener() {
             @Override
@@ -96,6 +106,8 @@ public class HomeFeed extends JPanel {
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up action listener for FollowUserButton
     public void addActionListenerFollowUserButton() {
         followUserButton.addActionListener(new ActionListener() {
             @Override
@@ -105,6 +117,8 @@ public class HomeFeed extends JPanel {
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up action listener for LogOutButton
     public void addActionListenerLogoutButton() {
         logoutButton.addActionListener(new ActionListener() {
             @Override
@@ -114,6 +128,8 @@ public class HomeFeed extends JPanel {
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates and adds a new WorkoutLog page to the panel
     public void showWorkoutLogPage() {
         removeAll(); // Clear the content of the current panel
 
@@ -124,6 +140,8 @@ public class HomeFeed extends JPanel {
         repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates and adds a new ProfilePage to the panel
     public void showProfilePage() {
         removeAll(); // Clear the content of the current panel
 
@@ -134,6 +152,8 @@ public class HomeFeed extends JPanel {
         repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates and adds a new AddWorkoutPage to the panel
     public void showAddWorkoutPage() {
         removeAll(); // Clear the content of the current panel
 
@@ -145,6 +165,8 @@ public class HomeFeed extends JPanel {
         repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates and adds a new FollowUsersPage to the panel
     private void showFollowUsersPage() {
         removeAll(); // Clear the content of the current panel
 
@@ -155,6 +177,8 @@ public class HomeFeed extends JPanel {
         repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: logs the user out and prompts the user with option to save their data
     public void handleLogout(ActionEvent e) {
         int option = JOptionPane.showConfirmDialog(HomeFeed.this,
                 "Do you want to save your data?", "Logout",
@@ -171,11 +195,15 @@ public class HomeFeed extends JPanel {
         logOutUser();
     }
 
+    // MODIFIES: gymBros
+    // EFFECTS: logs out current user and displays loginPage
     public void logOutUser() {
         gymBros.logOut();
         showLoginPage();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the current panel to loginPage layout
     public void showLoginPage() {
         removeAll();
 
@@ -186,8 +214,4 @@ public class HomeFeed extends JPanel {
         revalidate();
         repaint();
     }
-
-
-
-
 }

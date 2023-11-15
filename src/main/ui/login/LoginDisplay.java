@@ -15,6 +15,8 @@ public class LoginDisplay extends UsernamePasswordInput {
     private JButton cancelButton;
     private LoginPage loginPage;
 
+    // REQUIRES: gymBros and loginPage are not null
+    // EFFECTS: constructs a loginDisplay with given gymBros and loginPage
     public LoginDisplay(GymBros gymBros, LoginPage loginPage) {
         super(gymBros);
         this.loginPage = loginPage;
@@ -44,6 +46,8 @@ public class LoginDisplay extends UsernamePasswordInput {
         add(cancelButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a new HomeFeed with currentUser, gymBros and loginPage and displays it
     private void showHomePage() {
         removeAll(); // Clear the content of the current panel
 
@@ -56,6 +60,8 @@ public class LoginDisplay extends UsernamePasswordInput {
         repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds action listener to the login button
     public void addActionListenerLoginButton() {
         loginButton.addActionListener(new ActionListener() {
             @Override

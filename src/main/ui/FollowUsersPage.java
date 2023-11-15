@@ -16,6 +16,8 @@ public class FollowUsersPage extends JPanel {
     private JButton searchButton;
     private JButton backButton;
 
+    // REQUIRES: currentUser, homeFeed and gymBros are not null
+    // EFFECTS: constructs a FollowUsersPage with the given currentUser, homeFeed and gymBros
     public FollowUsersPage(User currentUser, HomeFeed homeFeed, GymBros gymBros) {
         this.currentUser = currentUser;
         this.homeFeed = homeFeed;
@@ -45,12 +47,17 @@ public class FollowUsersPage extends JPanel {
         add(backButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the usernameField, searchButton and backButton
     public void init() {
         usernameField = new JTextField(20);
         searchButton = new JButton("Search");
         backButton = new JButton("Back to Home");
     }
 
+    // MODIFIES: this, currentUser
+    // EFFECTS: if the user exists, then adds the user to the current user's following list and displays their profile,
+    //          otherwise shows a UserNotFound dialog
     private void searchForUser() {
         String usernameToFollow = usernameField.getText();
 
@@ -65,6 +72,8 @@ public class FollowUsersPage extends JPanel {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays the given user's profile on the panel
     private void displayUserProfile(User user) {
         removeAll();
 
@@ -96,6 +105,9 @@ public class FollowUsersPage extends JPanel {
         repaint();
     }
 
+    // MODIFIES: currentUser, user
+    // EFFECTS: adds the given user to the current user's following list and adds the current user to the given user's
+    //          followers list
     private void followUser(String username) {
         currentUser.addToFollowing(username);
         User u = gymBros.getUserWithUsername(username);
@@ -112,12 +124,15 @@ public class FollowUsersPage extends JPanel {
         }
     }
 
+    // EFFECTS: displays an error dialog indicating that the entered username was not found
     private void showUserNotFoundDialog() {
         JOptionPane.showMessageDialog(this,
                 "User not found. Please enter a valid username.",
                 "User Not Found", JOptionPane.ERROR_MESSAGE);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the current panel to the homeFeed layout
     private void backToHomePage() {
         removeAll();
 

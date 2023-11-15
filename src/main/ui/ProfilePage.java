@@ -22,6 +22,8 @@ public class ProfilePage extends JPanel {
     private User currentUser;
     private HomeFeed homeFeed;
 
+    // REQUIRES: user and homeFeed are not null
+    // EFFECTS: constructs a ProfilePage with given user and homeFeed
     public ProfilePage(User user, HomeFeed homeFeed) {
         this.currentUser = user;
         this.homeFeed = homeFeed;
@@ -36,6 +38,8 @@ public class ProfilePage extends JPanel {
         addActionListenerBioButton();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes layout components
     public void init(User user) {
         usernameLabel = new JLabel("Your username is " + user.getUsername());
         bioLabel = new JLabel("Your bio is " + user.getBio());
@@ -45,6 +49,8 @@ public class ProfilePage extends JPanel {
         editBioButton = new JButton("Click here to edit your bio!");
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds action listener for FollowingButton
     public void addActionListenerFollowingButton() {
         followingButton.addActionListener(new ActionListener() {
             @Override
@@ -55,6 +61,8 @@ public class ProfilePage extends JPanel {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds action listener for BackButton
     public void addActionListenerBackButton() {
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -63,7 +71,8 @@ public class ProfilePage extends JPanel {
             }
         });
     }
-
+    // MODIFIES: this
+    // EFFECTS: adds action listener for FollowersButton
     public void addActionListenerFollowersButton() {
         followersButton.addActionListener(new ActionListener() {
             @Override
@@ -73,6 +82,8 @@ public class ProfilePage extends JPanel {
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds action listener for BioButton
     public void addActionListenerBioButton() {
         editBioButton.addActionListener(new ActionListener() {
             @Override
@@ -105,6 +116,7 @@ public class ProfilePage extends JPanel {
     }
 
 
+    // EFFECTS: displays an information dialog showing list of usernames of users that current user is following
     private void showFollowingList() {
         List<String> followingList = currentUser.getFollowing();
 
@@ -120,6 +132,7 @@ public class ProfilePage extends JPanel {
 
     }
 
+    // EFFECTS: displays an information dialog showing list of usernames of users that follow current user
     private void showFollowersList() {
         List<String> followersList = currentUser.getFollowers();
 
@@ -134,6 +147,8 @@ public class ProfilePage extends JPanel {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: opens an input for user to input a new bio and updates the bioLabel
     public void editBio() {
         String newBio = JOptionPane.showInputDialog(this, "Enter your new bio:");
         if (newBio != null) {  // User clicked OK
@@ -142,6 +157,8 @@ public class ProfilePage extends JPanel {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets current page to homeFeed layout
     public void backToHomePage() {
         removeAll();
 

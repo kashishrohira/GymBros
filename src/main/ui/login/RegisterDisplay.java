@@ -16,7 +16,8 @@ public class RegisterDisplay extends UsernamePasswordInput {
     private LoginPage loginPage;
 
 
-    // EFFECTS: constructs a new RegisterDisplay panel with specified Gymbros instance and a reference
+    // REQUIRES: gymBros and loginPage are not null
+    // EFFECTS: constructs a new RegisterDisplay panel with specified gymBros instance and a reference
     //          to the login Page
     public RegisterDisplay(GymBros gymbros, LoginPage loginPage) {
         super(gymbros);
@@ -48,6 +49,8 @@ public class RegisterDisplay extends UsernamePasswordInput {
         setupLayout();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes buttons for registerDisplay
     public void init() {
         registerButton = new JButton("Register");
         cancelButton = new JButton("Cancel");
@@ -85,6 +88,8 @@ public class RegisterDisplay extends UsernamePasswordInput {
         loginPage.showLoginDisplay(gymBros);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the current panel to loginPage layout
     public void showLoginPage() { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         removeAll();
 
