@@ -17,6 +17,7 @@ public class ProfilePage extends JPanel {
     private JButton followingButton;
     private JButton followersButton;
     private JButton backButton;
+    private JButton editBioButton;
 
     private User currentUser;
     private HomeFeed homeFeed;
@@ -49,6 +50,13 @@ public class ProfilePage extends JPanel {
                 backToHomePage();
             }
         });
+
+        editBioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editBio();
+            }
+        });
     }
 
     public void init(User user) {
@@ -57,6 +65,7 @@ public class ProfilePage extends JPanel {
         followingButton = new JButton("Following");
         followersButton = new JButton("Followers");
         backButton = new JButton("Back to Home");
+        editBioButton = new JButton("Click here to edit your bio!");
     }
 
     // MODIFIES: this
@@ -75,7 +84,10 @@ public class ProfilePage extends JPanel {
         add(Box.createVerticalStrut(10));
         add(followersButton);
         add(Box.createVerticalStrut(20));
+        add(editBioButton);
+        add(Box.createVerticalStrut(20));
         add(backButton);
+
     }
 
 
@@ -105,6 +117,14 @@ public class ProfilePage extends JPanel {
             String followingMessage = "Users you are following:\n" + String.join(", ", followersList);
             JOptionPane.showMessageDialog(this, followingMessage, "Followers List",
                     JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    public void editBio() {
+        String newBio = JOptionPane.showInputDialog(this, "Enter your new bio:");
+        if (newBio != null) {  // User clicked OK
+            currentUser.setBio(newBio);
+            bioLabel.setText("Your bio is " + newBio);
         }
     }
 

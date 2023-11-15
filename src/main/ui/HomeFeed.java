@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class HomeFeed extends JPanel {
     private JLabel welcomeLabel;
@@ -54,8 +55,7 @@ public class HomeFeed extends JPanel {
         followUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Handle workout log button click
-                // You can navigate to the workout log page or perform any relevant action
+                showFollowUsersPage();
             }
         });
 
@@ -129,13 +129,23 @@ public class HomeFeed extends JPanel {
         repaint();
     }
 
+    private void showFollowUsersPage() {
+        removeAll(); // Clear the content of the current panel
+
+        FollowUsersPage followUserPage = new FollowUsersPage(currentUser, this, gymBros);
+        add(followUserPage);
+
+        revalidate();
+        repaint();
+    }
+
     public void handleLogout(ActionEvent e) {
         int option = JOptionPane.showConfirmDialog(HomeFeed.this,
                 "Do you want to save your data?", "Logout",
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (option == JOptionPane.YES_OPTION) {
-//            GymBrosApp.saveAccount(currentUser);
+//            saveAccount();
         } else if (option == JOptionPane.NO_OPTION) {
             // do nothing
         } else if (option == JOptionPane.CANCEL_OPTION || option == JOptionPane.CLOSED_OPTION) {
@@ -159,8 +169,9 @@ public class HomeFeed extends JPanel {
         // Refresh the panel
         revalidate();
         repaint();
-
     }
+
+
 
 
 }
