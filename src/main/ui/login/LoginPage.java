@@ -1,6 +1,8 @@
 package ui.login;
 
 import model.GymBros;
+import ui.GymBrosApp;
+import ui.HomeFeed;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +13,7 @@ public class LoginPage extends JPanel {
     private CardLayout cardLayout;
     private JPanel cardPanel;
     private GymBros gymBros;
+    private GymBrosApp gymBrosApp;
     private JPanel buttonPanel;
     private JButton loginButton;
     private JButton registerButton;
@@ -18,8 +21,9 @@ public class LoginPage extends JPanel {
 
     // REQUIRES: gymBros is not null
     // EFFECTS: constructs a loginPage with given gymBros
-    public LoginPage(GymBros gymbros) {
+    public LoginPage(GymBros gymbros, GymBrosApp gymBrosApp) {
         this.gymBros = gymbros;
+        this.gymBrosApp = gymBrosApp;
 
         init();
 
@@ -42,7 +46,7 @@ public class LoginPage extends JPanel {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                handleExit();
             }
         });
 
@@ -114,7 +118,7 @@ public class LoginPage extends JPanel {
     // MODIFIES: this
     // EFFECTS: creates new loginDisplay with given gymBros and this and displays it
     public void showLoginDisplay(GymBros gymBros) {
-        LoginDisplay loginDisplay = new LoginDisplay(gymBros, this);
+        LoginDisplay loginDisplay = new LoginDisplay(gymBros, this, gymBrosApp);
 
         removeAll();
         add(loginDisplay); // add loginDisplay page to the content pane
@@ -138,6 +142,21 @@ public class LoginPage extends JPanel {
     // MODIFIES: this
     // EFFECTS: shows the loginCard in the cardPanel
     public void showLoginPage() {
+        gymBrosApp.removeAll();
         cardLayout.show(cardPanel, "loginCard");
+    }
+
+    public void handleExit() {
+        int option = JOptionPane.showConfirmDialog(LoginPage.this,
+                "Do you want to save your data?", "Logout",
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (option == JOptionPane.YES_OPTION) {
+            gymBrosApp.saveAccount();
+        } else if (option == JOptionPane.NO_OPTION) {
+            // do nothing
+        } else if (option == JOptionPane.CANCEL_OPTION || option == JOptionPane.CLOSED_OPTION) {
+            return;
+        }
     }
 }

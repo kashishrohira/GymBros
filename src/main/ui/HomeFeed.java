@@ -2,6 +2,7 @@ package ui;
 
 import model.GymBros;
 import model.User;
+import ui.login.LoginDisplay;
 import ui.login.LoginPage;
 
 import javax.swing.*;
@@ -23,7 +24,7 @@ public class HomeFeed extends JPanel {
 
     // REQUIRES: user, gymBros and loginPage are not null
     // EFFECTS: constructs a homeFeed with given user, gymBros and loginPage
-    public HomeFeed(User user, GymBros gymBros, LoginPage loginPage) {
+    public HomeFeed(User user, GymBros gymBros, LoginPage loginPage, LoginDisplay loginDisplay) {
         this.currentUser = user;
         this.gymBros = gymBros;
         this.loginPage = loginPage;
@@ -178,19 +179,9 @@ public class HomeFeed extends JPanel {
     }
 
     // MODIFIES: this
-    // EFFECTS: logs the user out and prompts the user with option to save their data
+    // EFFECTS: logs the user out and shows dialog message
     public void handleLogout(ActionEvent e) {
-        int option = JOptionPane.showConfirmDialog(HomeFeed.this,
-                "Do you want to save your data?", "Logout",
-                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-        if (option == JOptionPane.YES_OPTION) {
-//            saveAccount();
-        } else if (option == JOptionPane.NO_OPTION) {
-            // do nothing
-        } else if (option == JOptionPane.CANCEL_OPTION || option == JOptionPane.CLOSED_OPTION) {
-            return;
-        }
+        JOptionPane.showMessageDialog(HomeFeed.this, "Successfully logged out!");
 
         logOutUser();
     }
@@ -206,12 +197,13 @@ public class HomeFeed extends JPanel {
     // EFFECTS: sets the current panel to loginPage layout
     public void showLoginPage() {
         removeAll();
+        loginPage.removeAll();
 
-        // Add the components for the home page
+        // Add the components for the login page
         loginPage.setLoginPageLayout();
 
         // Refresh the panel
-        revalidate();
-        repaint();
+        loginPage.revalidate();
+        loginPage.repaint();
     }
 }

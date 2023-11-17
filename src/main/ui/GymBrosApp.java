@@ -108,16 +108,6 @@ public class GymBrosApp extends JFrame {
             String command = input.next().toLowerCase();
             processLoginCommand(command);
         }
-
-//        while (keepGoing) {
-//            displayNextMenu();
-//            String command = input.next().toLowerCase();
-//            if (command.equals(EXIT_COMMAND)) {
-//                keepGoing = false;
-//            } else {
-//                processNextCommand(command);
-//            }
-//        }
     }
 
     public void showPopUpLoad() {
@@ -146,6 +136,7 @@ public class GymBrosApp extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 displayLoginMenu();
+
             }
         });
 
@@ -175,7 +166,7 @@ public class GymBrosApp extends JFrame {
         // Initialize the tapLabel with "Tap anywhere to begin" text
         tapLabel = new JLabel("Tap anywhere to begin");
         tapLabel.setForeground(Color.WHITE);
-        tapLabel.setBackground(Color.BLACK);
+        tapLabel.setBackground(Color.RED);
         tapLabel.setHorizontalAlignment(SwingConstants.CENTER);
         tapLabel.setVerticalAlignment(SwingConstants.BOTTOM);
         tapLabel.setFont(new Font("Arial", Font.BOLD, 24));
@@ -251,7 +242,7 @@ public class GymBrosApp extends JFrame {
 
     // EFFECTS: displays registration/login menu options to the user
     public void displayLoginMenu() {
-        LoginPage loginPage = new LoginPage(gymBros);
+        LoginPage loginPage = new LoginPage(gymBros, this);
         popUpFrame.setContentPane(loginPage);  // Set the content pane to the new loginPage
         popUpFrame.revalidate();
         popUpFrame.repaint();
@@ -328,7 +319,7 @@ public class GymBrosApp extends JFrame {
             writer.open();
             writer.writeGymBros(gymBros);
             writer.close();
-            System.out.println("Saved " + currentlyLoggedInUser.getUsername() + " to " + jsonUser);
+//            System.out.println("Saved " + currentlyLoggedInUser.getUsername() + " to " + jsonUser);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + jsonUser);
         }

@@ -2,6 +2,7 @@ package ui.login;
 
 import model.GymBros;
 import model.User;
+import ui.GymBrosApp;
 import ui.HomeFeed;
 import ui.UsernamePasswordInput;
 
@@ -17,7 +18,7 @@ public class LoginDisplay extends UsernamePasswordInput {
 
     // REQUIRES: gymBros and loginPage are not null
     // EFFECTS: constructs a loginDisplay with given gymBros and loginPage
-    public LoginDisplay(GymBros gymBros, LoginPage loginPage) {
+    public LoginDisplay(GymBros gymBros, LoginPage loginPage, GymBrosApp gymBrosApp) {
         super(gymBros);
         this.loginPage = loginPage;
 
@@ -30,7 +31,7 @@ public class LoginDisplay extends UsernamePasswordInput {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loginPage.showLoginPage(); // Switch to the login page
+                showLoginPage(); // Switch to the login page
             }
         });
 
@@ -53,7 +54,7 @@ public class LoginDisplay extends UsernamePasswordInput {
 
         // Assuming you have a method to get the currently logged-in user
         User loggedInUser = gymBros.getCurrentlyLoggedInUser();
-        HomeFeed homePage = new HomeFeed(loggedInUser, gymBros, loginPage);
+        HomeFeed homePage = new HomeFeed(loggedInUser, gymBros, loginPage, this);
 
         add(homePage); // Add the home page to the current panel
         revalidate();
@@ -80,8 +81,18 @@ public class LoginDisplay extends UsernamePasswordInput {
                             "Incorrect username or password. Try again.");
                     clearFields();
                 }
-
             }
         });
+    }
+
+    public void showLoginPage() {
+        loginPage.removeAll();
+
+        // Add the components for the home page
+        loginPage.setLoginPageLayout();
+
+        // Refresh the panel
+        loginPage.revalidate();
+        loginPage.repaint();
     }
 }

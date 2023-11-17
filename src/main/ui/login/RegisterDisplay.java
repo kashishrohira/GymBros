@@ -91,14 +91,14 @@ public class RegisterDisplay extends UsernamePasswordInput {
     // MODIFIES: this
     // EFFECTS: sets the current panel to loginPage layout
     public void showLoginPage() { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        removeAll();
+        loginPage.removeAll();
 
         // Add the components for the home page
         loginPage.setLoginPageLayout();
 
         // Refresh the panel
-        revalidate();
-        repaint();
+        loginPage.revalidate();
+        loginPage.repaint();
     }
 
     // MODIFIES: this, usernameField, PasswordField, loginPage

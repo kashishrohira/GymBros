@@ -1,18 +1,27 @@
 {
     "loggedIn": false,
-    "user": {
-        "password": "uuuuuuuu",
-        "followers": [],
-        "workoutLog": [],
-        "following": [],
-        "bio": "default bio",
-        "username": "kkk"
-    },
+    "user": "null",
     "users": [
         {
             "password": "abababab",
             "followers": [],
-            "workoutLog": [],
+            "workoutLog": [{
+                "date": "November 16, 2023",
+                "exercises": [
+                    {
+                        "reps": 10,
+                        "name": "squat"
+                    },
+                    {
+                        "reps": 20,
+                        "name": "lunge"
+                    },
+                    {
+                        "reps": 20,
+                        "name": "push up"
+                    }
+                ]
+            }],
             "following": [],
             "bio": "default bio",
             "username": "kashish"
