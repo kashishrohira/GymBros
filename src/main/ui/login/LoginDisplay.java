@@ -85,6 +85,8 @@ public class LoginDisplay extends UsernamePasswordInput {
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: clears current panel and displays login page
     public void showLoginPage() {
         loginPage.removeAll();
 

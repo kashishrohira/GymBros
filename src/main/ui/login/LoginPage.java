@@ -43,15 +43,21 @@ public class LoginPage extends JPanel {
             }
         });
 
+        addActionListenerExitButton();
+
+        setLoginPageLayout();
+
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds action listener for exit button
+    public void addActionListenerExitButton() {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 handleExit();
             }
         });
-
-        setLoginPageLayout();
-
     }
 
     // MODIFIES: this
@@ -146,6 +152,8 @@ public class LoginPage extends JPanel {
         cardLayout.show(cardPanel, "loginCard");
     }
 
+    // MODIFIES: this
+    // EFFECTS: handles exit for the page and asks user if they want to save file
     public void handleExit() {
         int option = JOptionPane.showConfirmDialog(LoginPage.this,
                 "Do you want to save your data?", "Logout",

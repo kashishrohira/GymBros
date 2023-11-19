@@ -71,6 +71,7 @@ public class ProfilePage extends JPanel {
             }
         });
     }
+
     // MODIFIES: this
     // EFFECTS: adds action listener for FollowersButton
     public void addActionListenerFollowersButton() {

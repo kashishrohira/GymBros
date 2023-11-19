@@ -48,7 +48,6 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // CHANGE!!!!!
     // EFFECTS: reads GymBros from JSON object and returns it
     private GymBros readGymBros(JSONObject jsonObject) {
         GymBros gymBros = new GymBros();
