@@ -50,7 +50,7 @@ combine my love for fitness with technology and community-building.
 
 ## Instructions for grader
 - You can generate the first required action related to adding a workout to your workout log by clicking the "Add a new workout" button
-- You can generate the second required action related to adding a workout to your workout log by ...
+- You can generate the second required action related to adding a workout to your workout log by selecting a date from the drop-down menu and getting the subset of workouts on that date
 - You can locate my visual component at the start of the application when you click "Load from file"
-- You can save the state of my application by clicking on logout and then selecting yes when prompted to save to file.
+- You can save the state of my application by clicking on exit from the login page and then selecting yes when prompted to save to file.
 - You can reload the state of my application by clicking "Load from file" when starting the app again and logging into your account

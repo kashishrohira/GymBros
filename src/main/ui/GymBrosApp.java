@@ -227,6 +227,9 @@ public class GymBrosApp extends JFrame {
 
     public void createNewInstance() { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         gymBros = new GymBros();
+        loadButton.setVisible(false);
+        newButton.setVisible(false);
+        showLogoDialog();
     }
 
     // EFFECTS: processes user command
