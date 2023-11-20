@@ -1,54 +1,24 @@
 {
     "loggedIn": false,
     "user": "null",
-    "users": [
-        {
-            "password": "abababab",
-            "followers": [],
-            "workoutLog": [{
-                "date": "November 16, 2023",
-                "exercises": [
-                    {
-                        "reps": 10,
-                        "name": "squat"
-                    },
-                    {
-                        "reps": 20,
-                        "name": "lunge"
-                    },
-                    {
-                        "reps": 20,
-                        "name": "push up"
-                    }
-                ]
-            }],
-            "following": [],
-            "bio": "default bio",
-            "username": "kashish"
-        },
-        {
-            "password": "yayayayay",
-            "followers": [],
-            "workoutLog": [],
-            "following": [],
-            "bio": "default bio",
-            "username": "kash"
-        },
-        {
-            "password": "uuuuuuuu",
-            "followers": [],
-            "workoutLog": [],
-            "following": [],
-            "bio": "default bio",
-            "username": "kkk"
-        },
-        {
-            "password": "asdfghjk",
-            "followers": [],
-            "workoutLog": [],
-            "following": [],
-            "bio": "default bio",
-            "username": "jim"
-        }
-    ]
+    "users": [{
+        "password": "abababab",
+        "followers": [],
+        "workoutLog": [{
+            "date": "November 19, 2023",
+            "exercises": [
+                {
+                    "reps": 10,
+                    "name": "push up"
+                },
+                {
+                    "reps": 20,
+                    "name": "plank"
+                }
+            ]
+        }],
+        "following": [],
+        "bio": "default bio",
+        "username": "kashish"
+    }]
 }

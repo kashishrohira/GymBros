@@ -161,10 +161,12 @@ public class LoginPage extends JPanel {
 
         if (option == JOptionPane.YES_OPTION) {
             gymBrosApp.saveAccount();
+
         } else if (option == JOptionPane.NO_OPTION) {
             // do nothing
         } else if (option == JOptionPane.CANCEL_OPTION || option == JOptionPane.CLOSED_OPTION) {
             return;
         }
+        System.exit(0);
     }
 }
