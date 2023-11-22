@@ -89,11 +89,13 @@ public class GymBrosApp extends JFrame {
     }
 
 
-    // EFFECTS: processes user input
+    // EFFECTS: loads the first window
     private void runGymBros() {
         showPopUpLoad();
     }
 
+    // MODIFIES: this
+    // EFFECTS: shows pop up frame with load from file and new instance buttons
     public void showPopUpLoad() {
         initButtons();
         addActionListenerLoadButton();
@@ -127,12 +129,15 @@ public class GymBrosApp extends JFrame {
         setPopUpLayout();
     }
 
+    // EFFECTS: initializes the JFrame and buttons
     public void initButtons() {
         popUpFrame = new JFrame("Pop-up Window");
         loadButton = new JButton("Load from file");
         newButton = new JButton("Create new GymBros");
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds action listener to load button
     public void addActionListenerLoadButton() {
         // Add action listener for the Load button in the pop-up window
         loadButton.addActionListener(new ActionListener() {
@@ -146,6 +151,8 @@ public class GymBrosApp extends JFrame {
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the tap label and adds it to the frame
     public void initTapLabel() {
         // Initialize the tapLabel with "Tap anywhere to begin" text
         tapLabel = new JLabel("Tap anywhere to begin");
@@ -159,6 +166,8 @@ public class GymBrosApp extends JFrame {
         popUpFrame.add(tapLabel, BorderLayout.SOUTH);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the layout of current page to pop up page
     public void setPopUpLayout() {
         JPanel loadButtonPanel = new JPanel();
         loadButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -177,6 +186,8 @@ public class GymBrosApp extends JFrame {
         popUpFrame.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: shows the logo image
     public void showLogoDialog() {
         ImageIcon icon = new ImageIcon("gymbros-logo.jpeg");
         Image img = icon.getImage();
@@ -209,6 +220,8 @@ public class GymBrosApp extends JFrame {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a new instance of the app and shows logo dialog
     public void createNewInstance() {
         gymBros = new GymBros();
         loadButton.setVisible(false);
@@ -216,7 +229,7 @@ public class GymBrosApp extends JFrame {
         showLogoDialog();
     }
 
-
+    // MODIFIES: this
     // EFFECTS: displays registration/login menu options to the user
     public void displayLoginMenu() {
         LoginPage loginPage = new LoginPage(gymBros, this);
@@ -224,10 +237,6 @@ public class GymBrosApp extends JFrame {
         popUpFrame.revalidate();
         popUpFrame.repaint();
     }
-
-
-
-
 
     // MODIFIES: this
     // EFFECTS: loads account from file
