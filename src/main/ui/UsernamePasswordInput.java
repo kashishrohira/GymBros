@@ -12,6 +12,7 @@ public abstract class UsernamePasswordInput extends JPanel {
     protected JTextField usernameField;
     protected JPasswordField passwordField;
 
+    // EFFECTS: constructs a username, password input with text fields
     public UsernamePasswordInput(GymBros gymBros) {
         this.gymBros = gymBros;
         Dimension dimension = new Dimension(200, 50);
@@ -44,6 +45,8 @@ public abstract class UsernamePasswordInput extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(100, 0, 50, 0));
     }
 
+    // MODIFIES: this
+    // EFFECTS: clears the username and password text fields
     public void clearFields() {
         usernameField.setText("");
         passwordField.setText("");
