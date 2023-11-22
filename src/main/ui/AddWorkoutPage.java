@@ -95,7 +95,7 @@ public class AddWorkoutPage extends JPanel {
         getFields();
         if (reps < 0) {
             JOptionPane.showMessageDialog(this,
-                    "Please a positive number of reps",
+                    "Please enter a positive number of reps",
                     "Log Exercise", JOptionPane.ERROR_MESSAGE);
         } else if (!exerciseName.isEmpty() && !repsText.isEmpty()) {
 
