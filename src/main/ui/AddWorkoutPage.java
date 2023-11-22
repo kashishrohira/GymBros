@@ -14,12 +14,16 @@ import java.time.format.DateTimeFormatter;
 public class AddWorkoutPage extends JPanel {
     private User currentUser;
     private HomeFeed homeFeed;
+    private String exerciseName;
+    private String repsText;
+    private int reps;
 
     private JTextField exerciseNameField;
     private JTextField repsField;
     private JButton logExerciseButton;
     private JButton backButton;
     private JLabel dateLabel;
+
 
     // REQUIRES: user and homeFeed are not null
     // EFFECTS: constructs AddWorkoutPage with the given user and homeFeed
@@ -88,16 +92,16 @@ public class AddWorkoutPage extends JPanel {
     // MODIFIES: currentUser
     // EFFECTS: validates input and logs the exercise to the workout log of the current user
     public void logExercise() {
-        String exerciseName = exerciseNameField.getText();
-        String repsText = repsField.getText();
-
-        if (!exerciseName.isEmpty() && !repsText.isEmpty()) {
-            int reps = Integer.parseInt(repsText);
+        getFields();
+        if (reps < 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Please a positive number of reps",
+                    "Log Exercise", JOptionPane.ERROR_MESSAGE);
+        } else if (!exerciseName.isEmpty() && !repsText.isEmpty()) {
 
             Exercise exercise = new Exercise(exerciseName, reps);
-            boolean exists = currentUser.workoutOnDateExists(getCurrentDate());
 
-            if (exists) {
+            if (currentUser.workoutOnDateExists(getCurrentDate())) {
                 Workout w = currentUser.getWorkoutOnDate(getCurrentDate());
                 w.addExercise(exercise);
             } else {
@@ -107,13 +111,26 @@ public class AddWorkoutPage extends JPanel {
             }
             JOptionPane.showMessageDialog(this,
                     "Exercise logged successfully!", "Log Exercise", JOptionPane.INFORMATION_MESSAGE);
-            exerciseNameField.setText("");
-            repsField.setText("");
+            clearFields();
         } else {
             JOptionPane.showMessageDialog(this,
                     "Please enter both exercise name and number of reps.",
                     "Log Exercise", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    // EFFECTS: retrieves the exercise name and reps from the text fields
+    public void getFields() {
+        exerciseName = exerciseNameField.getText();
+        repsText = repsField.getText();
+        reps = Integer.parseInt(repsText);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: clears the exercise name and reps text fields
+    public void clearFields() {
+        exerciseNameField.setText("");
+        repsField.setText("");
     }
 
     // MODIFIES: this
