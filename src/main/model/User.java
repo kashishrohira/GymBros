@@ -71,6 +71,8 @@ public class User implements Writable {
     public void addToFollowing(String username) {
         if (!this.following.contains(username)) {
             this.following.add(username);
+            EventLog.getInstance().logEvent(new Event(username + " added to "
+                    + this.userName + "'s following."));
 //            user.addFollower(this);
         }
     }
@@ -81,6 +83,8 @@ public class User implements Writable {
     public void addFollower(String username) {
         if (!this.followers.contains(username)) {
             this.followers.add(username);
+            EventLog.getInstance().logEvent(new Event(username + " added to "
+                    + this.userName + "'s followers."));
 //            user.addToFollowing(this);
         }
     }
@@ -91,6 +95,8 @@ public class User implements Writable {
     public void removeFromFollowing(String username) {
         if (this.following.contains(username)) {
             this.following.remove(username);
+            EventLog.getInstance().logEvent(new Event(username + " removed from "
+                    + this.userName + "'s following."));
 //            user.removeFollower(this);
         }
     }
@@ -101,6 +107,8 @@ public class User implements Writable {
     public void removeFollower(String username) {
         if (this.followers.contains(username)) {
             this.followers.remove(username);
+            EventLog.getInstance().logEvent(new Event(username + " removed from "
+                    + this.userName + "'s followers."));
 //            user.removeFromFollowing(this);
         }
     }
@@ -119,12 +127,16 @@ public class User implements Writable {
     // EFFECTS: sets the user's bio to given string
     public void setBio(String bio) {
         this.bio = bio;
+        if (this.bio != defaultBio) {
+            EventLog.getInstance().logEvent(new Event("Bio updated for " + this.userName));
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: adds given workout to the workout log of this user
     public void addWorkoutToLog(Workout w) {
         workoutLog.add(w);
+        EventLog.getInstance().logEvent(new Event("New workout created for " + w.getDate()));
     }
 
     // REQUIRES: date should be in format MMMM dd, YYYY eg, October 10, 2023

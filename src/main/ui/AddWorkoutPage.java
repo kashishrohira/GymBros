@@ -106,8 +106,8 @@ public class AddWorkoutPage extends JPanel {
                 w.addExercise(exercise);
             } else {
                 Workout workout = new Workout();
-                workout.addExercise(exercise);
                 currentUser.addWorkoutToLog(workout);
+                workout.addExercise(exercise);
             }
             JOptionPane.showMessageDialog(this,
                     "Exercise logged successfully!", "Log Exercise", JOptionPane.INFORMATION_MESSAGE);

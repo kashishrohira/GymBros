@@ -3,47 +3,86 @@
     "user": "null",
     "users": [
         {
+            "password": "lalalala",
+            "followers": ["kashish"],
+            "workoutLog": [{
+                "date": "November 25, 2023",
+                "exercises": [{
+                    "reps": 20,
+                    "name": "push up"
+                }]
+            }],
+            "following": [],
+            "bio": "cutie",
+            "username": "poem"
+        },
+        {
             "password": "abababab",
-            "followers": ["lol"],
+            "followers": ["angad"],
             "workoutLog": [
                 {
-                    "date": "November 19, 2023",
+                    "date": "November 25, 2023",
                     "exercises": [
                         {
                             "reps": 10,
+                            "name": "squat"
+                        },
+                        {
+                            "reps": 20,
+                            "name": "lunge"
+                        },
+                        {
+                            "reps": 20,
                             "name": "push up"
                         },
                         {
                             "reps": 20,
-                            "name": "plank"
+                            "name": "bench press"
                         }
                     ]
                 },
                 {
-                    "date": "November 21, 2023",
+                    "date": "November 26, 2023",
+                    "exercises": [{
+                        "reps": 20,
+                        "name": "push up"
+                    }]
+                },
+                {
+                    "date": "November 27, 2023",
                     "exercises": [
                         {
-                            "reps": 10,
-                            "name": "push up"
+                            "reps": 20,
+                            "name": "bench press"
                         },
                         {
                             "reps": 20,
-                            "name": "lat pulldown"
+                            "name": "lunge"
+                        },
+                        {
+                            "reps": 10,
+                            "name": "push up"
                         }
                     ]
                 }
             ],
-            "following": [],
-            "bio": "i am so cool",
+            "following": ["poem"],
+            "bio": "lol",
             "username": "kashish"
         },
         {
             "password": "lalalala",
             "followers": [],
-            "workoutLog": [],
+            "workoutLog": [{
+                "date": "November 26, 2023",
+                "exercises": [{
+                    "reps": 20,
+                    "name": "lunge"
+                }]
+            }],
             "following": ["kashish"],
             "bio": "default bio",
-            "username": "lol"
+            "username": "angad"
         }
     ]
 }

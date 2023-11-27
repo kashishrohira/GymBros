@@ -28,12 +28,16 @@ public class Workout implements Writable {
     // EFFECTS: adds Exercise to the list of exercises in workout
     public void addExercise(Exercise exercise) {
         this.workout.add(exercise);
+        EventLog.getInstance().logEvent(new Event(exercise.getExerciseName() + " added to "
+                + this.date + "'s workout."));
     }
 
     // MODIFIES: this
     // EFFECTS: removes Exercise from the list of exercises in workout
     public void removeExercise(Exercise exercise) {
         this.workout.remove(exercise);
+        EventLog.getInstance().logEvent(new Event(exercise.getExerciseName() + " removed from "
+                + this.date + "'s workout."));
     }
 
     // EFFECTS: returns the number of exercises in workout

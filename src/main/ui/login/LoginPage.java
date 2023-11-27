@@ -167,6 +167,7 @@ public class LoginPage extends JPanel {
         } else if (option == JOptionPane.CANCEL_OPTION || option == JOptionPane.CLOSED_OPTION) {
             return;
         }
+        gymBrosApp.printLog();
         System.exit(0);
     }
 }

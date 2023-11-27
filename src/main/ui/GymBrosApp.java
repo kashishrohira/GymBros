@@ -1,12 +1,11 @@
 package ui;
 
-import model.Exercise;
-import model.GymBros;
-import model.User;
-import model.Workout;
+import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import ui.login.LoginPage;
+import model.Event;
+import model.EventLog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,48 +17,10 @@ import java.awt.event.MouseEvent;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.Iterator;
 
 public class GymBrosApp extends JFrame {
-    private static final int WIDTH = 1000;
-    private static final int HEIGHT = 1200;
-    private JDesktopPane desktop;
-    private JInternalFrame controlPanel;
-
-    // register/login commands
-    public static final String LOGIN_COMMAND = "/login";
-    public static final String REGISTER_COMMAND = "/register";
-    public static final String LOGOUT_COMMAND = "/logout";
-    public static final String SAVE_ACCOUNT = "/save";
-    public static final String LOAD_ACCOUNT = "/load";
-    // fitness-tracking commands
-    public static final String VIEW_WORKOUT_LOG_COMMAND = "/viewlog";
-    public static final String ADD_EXERCISE_COMMAND = "/exercise";
-    public static final String TRACKER_COMMAND = "/track";
-    public static final String HOME_COMMAND = "/home";
-
-    // profile commands
-    public static final String EDIT_PROFILE_COMMAND = "/edit";
-    public static final String FOLLOW_USER_COMMAND = "/follow";
-    public static final String SELF_PROFILE_COMMAND = "me";
-
-    // other
-    public static final String EXIT_COMMAND = "/exit";
-
-
-    public static final int MAX_USERNAME_LENGTH = 20;
-    public static final int MIN_PASSWORD_LENGTH = 8;
-
-
-    private Boolean loggedIn;
-    private User currentlyLoggedInUser;
-    private Scanner input;
-    private HashMap<String, User> usernameUser;
-    private HashMap<String, String> usernamePassword;
     private GymBros gymBros;
     private JsonWriter writer;
     private JsonReader reader;
@@ -77,11 +38,6 @@ public class GymBrosApp extends JFrame {
     //          the usernameUser as empty hashmap, instantiates the Scanner to take in user input
     //          and runs the GymBros application
     public GymBrosApp() throws FileNotFoundException {
-        loggedIn = false;
-        usernameUser = new HashMap<>();
-        input = new Scanner(System.in);
-        input.useDelimiter("\n");
-        currentlyLoggedInUser = null;
         gymBros = new GymBros();
         writer = new JsonWriter(jsonUser);
         reader = new JsonReader(jsonUser);
@@ -258,6 +214,15 @@ public class GymBrosApp extends JFrame {
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + jsonUser);
         }
+    }
+
+    public void printLog() {
+        Iterator<Event> eventIterator = EventLog.getInstance().iterator();
+        while (eventIterator.hasNext()) {
+            System.out.println(eventIterator.next().toString());
+        }
+
+        EventLog.getInstance().clear();
     }
 
 

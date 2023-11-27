@@ -56,6 +56,7 @@ public class GymBros implements Writable {
         currentlyLoggedInUser = user;
         usernameUser.put(user.getUsername(), user);
         usernamePassword.put(user.getUsername(), user.getPassword());
+        EventLog.getInstance().logEvent(new Event("Added user " + user.getUsername() + " to the app."));
     }
 
     // EFFECTS: returns true if username exists on the app, false otherwise
@@ -108,6 +109,7 @@ public class GymBros implements Writable {
     // EFFECTS: logs the user out of the app
     public void logOut() {
         loggedIn = false;
+        EventLog.getInstance().logEvent(new Event(currentlyLoggedInUser.getUsername() + " is logged out."));
         currentlyLoggedInUser = null;
     }
 
@@ -117,6 +119,9 @@ public class GymBros implements Writable {
     // EFFECTS: sets the current user to the given user
     public void setCurrentlyLoggedInUser(User currentlyLoggedInUser) {
         this.currentlyLoggedInUser = currentlyLoggedInUser;
+        if (currentlyLoggedInUser != null) {
+            EventLog.getInstance().logEvent(new Event(currentlyLoggedInUser.getUsername() + " is logged in."));
+        }
 
     }
 
@@ -142,6 +147,7 @@ public class GymBros implements Writable {
             return false;
         } else {
             loggedIn = true;
+            EventLog.getInstance().logEvent(new Event(username + " is authenticated."));
             setCurrentlyLoggedInUser(getUserWithUsername(username));
             return true;
         }
