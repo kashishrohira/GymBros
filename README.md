@@ -54,3 +54,11 @@ combine my love for fitness with technology and community-building.
 - You can locate my visual component at the start of the application when you click "Load from file"
 - You can save the state of my application by clicking on exit from the login page and then selecting yes when prompted to save to file.
 - You can reload the state of my application by clicking "Load from file" when starting the app again and logging into your account
+
+## Phase 4: Task 3
+If I had more time, this is how I would refactor my project:
+- I would make it so that when the user navigates between pages, instead of repainting the whole frame, I could just modify
+certain elements on the screen
+- I would combine the AddWorkoutPage and WorkoutLog page so that the user can view the existing workout log while adding a new exercise
+- I would create an abstract class that has the 'Back to Home' button and make all the appropriate classes extend this class in order to 
+avoid code duplication when creating the button for every page.
