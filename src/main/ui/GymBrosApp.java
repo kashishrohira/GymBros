@@ -170,7 +170,7 @@ public class GymBrosApp extends JFrame {
         // show tap label
         tapLabel.setVisible(true);
 
-        // repaint frame
+
         popUpFrame.revalidate();
         popUpFrame.repaint();
 
