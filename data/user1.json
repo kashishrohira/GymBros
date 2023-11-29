@@ -4,19 +4,34 @@
     "users": [{
         "password": "abababab",
         "followers": [],
-        "workoutLog": [{
-            "date": "November 28, 2023",
-            "exercises": [
-                {
-                    "reps": 20,
-                    "name": "squat "
-                },
-                {
-                    "reps": 20,
-                    "name": "lunge"
-                }
-            ]
-        }],
+        "workoutLog": [
+            {
+                "date": "November 28, 2023",
+                "exercises": [
+                    {
+                        "reps": 20,
+                        "name": "squat "
+                    },
+                    {
+                        "reps": 20,
+                        "name": "lunge"
+                    }
+                ]
+            },
+            {
+                "date": "November 29, 2023",
+                "exercises": [
+                    {
+                        "reps": 20,
+                        "name": "rdl"
+                    },
+                    {
+                        "reps": 10,
+                        "name": "push up"
+                    }
+                ]
+            }
+        ],
         "following": [],
         "bio": "lol",
         "username": "kashish"
