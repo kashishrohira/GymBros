@@ -216,6 +216,8 @@ public class GymBrosApp extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: prints the event log
     public void printLog() {
         Iterator<Event> eventIterator = EventLog.getInstance().iterator();
         while (eventIterator.hasNext()) {
