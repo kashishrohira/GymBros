@@ -11,7 +11,7 @@ import java.util.List;
 
 // Workout is a list of exercises
 public class Workout implements Writable {
-    List<Exercise> workout;
+    private List<Exercise> workout;
     private String date;
     private DateTimeFormatter dtf;
 
