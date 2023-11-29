@@ -127,7 +127,7 @@ public class User implements Writable {
     // EFFECTS: sets the user's bio to given string
     public void setBio(String bio) {
         this.bio = bio;
-        if (this.bio != defaultBio) {
+        if (bio != defaultBio) {
             EventLog.getInstance().logEvent(new Event("Bio updated for " + this.userName));
         }
     }
