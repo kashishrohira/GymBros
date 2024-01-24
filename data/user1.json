@@ -1,39 +1,72 @@
 {
     "loggedIn": false,
     "user": "null",
-    "users": [{
-        "password": "abababab",
-        "followers": [],
-        "workoutLog": [
-            {
-                "date": "November 28, 2023",
-                "exercises": [
-                    {
-                        "reps": 20,
-                        "name": "squat "
-                    },
-                    {
-                        "reps": 20,
-                        "name": "lunge"
-                    }
-                ]
-            },
-            {
-                "date": "November 29, 2023",
-                "exercises": [
-                    {
-                        "reps": 20,
-                        "name": "rdl"
-                    },
-                    {
-                        "reps": 10,
-                        "name": "push up"
-                    }
-                ]
-            }
-        ],
-        "following": [],
-        "bio": "lol",
-        "username": "kashish"
-    }]
+    "users": [
+        {
+            "password": "abababab",
+            "followers": [
+                "srini",
+                "angad"
+            ],
+            "workoutLog": [
+                {
+                    "date": "November 28, 2023",
+                    "exercises": [
+                        {
+                            "reps": 20,
+                            "name": "squat "
+                        },
+                        {
+                            "reps": 20,
+                            "name": "lunge"
+                        }
+                    ]
+                },
+                {
+                    "date": "November 29, 2023",
+                    "exercises": [
+                        {
+                            "reps": 20,
+                            "name": "rdl"
+                        },
+                        {
+                            "reps": 10,
+                            "name": "push up"
+                        }
+                    ]
+                }
+            ],
+            "following": [],
+            "bio": "lol",
+            "username": "kashish"
+        },
+        {
+            "password": "kashuiscool",
+            "followers": [],
+            "workoutLog": [{
+                "date": "December 16, 2023",
+                "exercises": [{
+                    "reps": 36,
+                    "name": "bicep curl"
+                }]
+            }],
+            "following": ["kashish"],
+            "bio": "i love kashu",
+            "username": "angad"
+        },
+        {
+            "password": "tomato69",
+            "followers": [],
+            "workoutLog": [{
+                "date": "December 05, 2023",
+                "exercises": [{
+                    "reps": 30,
+                    "name": "run bitvh"
+                }]
+            }],
+            "following": ["kashish"],
+            "bio": "hee hoo",
+            "username": "srini"
+        }
+    ]
 }
