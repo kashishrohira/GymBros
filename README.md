@@ -48,32 +48,7 @@ combine my love for fitness with technology and community-building.
  file and have the option to do so or not
 
 
-## Instructions for grader
-- You can generate the first required action related to adding a workout to your workout log by clicking the "Add a new workout" button
-- You can generate the second required action related to adding a workout to your workout log by selecting a date from the drop-down menu and getting the subset of workouts on that date
-- You can locate my visual component at the start of the application when you click "Load from file"
-- You can save the state of my application by clicking on exit from the login page and then selecting yes when prompted to save to file.
-- You can reload the state of my application by clicking "Load from file" when starting the app again and logging into your account
 
-## Phase 4: Task 2
-- Tue Nov 28 19:55:13 PST 2023
-  - Added user kashish to the app. 
-- Tue Nov 28 19:55:20 PST 2023
-  - kashish is authenticated. 
-- Tue Nov 28 19:55:20 PST 2023
-  - kashish is logged in. 
-- Tue Nov 28 19:55:28 PST 2023 
-  - Bio updated for kashish 
-- Tue Nov 28 19:55:39 PST 2023
-  - New workout created for November 28, 2023 
-- Tue Nov 28 19:55:39 PST 2023
-  - squat  added to November 28, 2023's workout. 
-- Tue Nov 28 19:55:44 PST 2023
-  - lunge added to November 28, 2023's workout. 
-- Tue Nov 28 19:55:56 PST 2023
-  - kashish is logged out.
-
-## Phase 4: Task 3
 If I had more time, this is how I would refactor my project:
 - I would make it so that when the user navigates between pages, instead of repainting the whole frame, I could just modify
 certain elements on the screen
